@@ -86,7 +86,7 @@ public class LoginScreen extends Application {
         root.getChildren().addAll(leftPane, rightPane);
         root.setStyle("-fx-background-color: linear-gradient(to right, #87CEFA, #FFFFFF);");
 
-        Scene scene = new Scene(root, 800, 400);
+        Scene scene = new Scene(root, 600, 400);
         primaryStage.setTitle("MoniHealth - Login");
         primaryStage.setScene(scene);
         primaryStage.show();
