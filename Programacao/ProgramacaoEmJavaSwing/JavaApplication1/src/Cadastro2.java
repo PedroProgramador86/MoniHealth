@@ -15,6 +15,10 @@ public class Cadastro2 extends javax.swing.JFrame {
      */
     public Cadastro2() {
         initComponents();
+        botaoDeVoltar.addActionListener(e -> {
+            new Cadastro1().setVisible(true); // Abre a nova tela
+            dispose(); // Fecha a tela atual
+        });
     }
 
     /**

@@ -63,11 +63,11 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="jToggleButton1" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Component id="botaoAgenda" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jToggleButton2" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Component id="botaoPainel" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jToggleButton3" min="-2" pref="140" max="-2" attributes="0"/>
+                  <Component id="botaoProntuarios" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
@@ -83,9 +83,9 @@
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jToggleButton1" alignment="0" pref="40" max="32767" attributes="0"/>
-                          <Component id="jToggleButton3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jToggleButton2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoAgenda" alignment="0" pref="40" max="32767" attributes="0"/>
+                          <Component id="botaoProntuarios" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoPainel" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -105,7 +105,7 @@
             <Property name="text" type="java.lang.String" value="MoniHealph"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+        <Component class="javax.swing.JToggleButton" name="botaoAgenda">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="0" type="rgb"/>
@@ -116,7 +116,7 @@
             <Property name="text" type="java.lang.String" value="Agenda"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+        <Component class="javax.swing.JToggleButton" name="botaoPainel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="0" type="rgb"/>
@@ -127,7 +127,7 @@
             <Property name="text" type="java.lang.String" value="Painel"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton3">
+        <Component class="javax.swing.JToggleButton" name="botaoProntuarios">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="0" type="rgb"/>
