@@ -27,19 +27,14 @@
               <Component id="panel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton1" pref="576" max="32767" attributes="0"/>
-                  <Component id="jPasswordField2" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="BotaoDeProximo" pref="576" max="32767" attributes="0"/>
+                  <Component id="campoPreencheSenhaNovamente" alignment="1" max="32767" attributes="0"/>
+                  <Component id="campoPreencheSenha" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel4" min="-2" pref="159" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" pref="195" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="label2" min="-2" max="-2" attributes="0"/>
-                          <Component id="label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="label4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextoDeSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextoDeConfirmarSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="botaoDeVoltar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
@@ -70,21 +65,16 @@
               </Group>
               <Component id="label2" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="label3" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="TextoDeSenha" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="jPasswordField1" min="-2" pref="52" max="-2" attributes="0"/>
+              <Component id="campoPreencheSenha" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="label4" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="TextoDeConfirmarSenha" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-              <Component id="jPasswordField2" min="-2" pref="52" max="-2" attributes="0"/>
+              <Component id="campoPreencheSenhaNovamente" min="-2" pref="52" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="BotaoDeProximo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="37" pref="69" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,7 +136,7 @@
         <Property name="text" type="java.lang.String" value="Criando Senha:"/>
       </Properties>
     </Component>
-    <Component class="java.awt.Label" name="label3">
+    <Component class="java.awt.Label" name="TextoDeSenha">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="0"/>
@@ -154,7 +144,7 @@
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="BotaoDeProximo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="0" type="rgb"/>
@@ -165,26 +155,7 @@
         <Property name="text" type="java.lang.String" value="Proximo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="sansserif" size="14" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="66" red="33" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Entrar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="sansserif" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="J&#xe1; possui uma conta ?"/>
-      </Properties>
-    </Component>
-    <Component class="java.awt.Label" name="label4">
+    <Component class="java.awt.Label" name="TextoDeConfirmarSenha">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="0"/>
@@ -192,9 +163,9 @@
         <Property name="text" type="java.lang.String" value="Confirmar Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="campoPreencheSenha">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField2">
+    <Component class="javax.swing.JPasswordField" name="campoPreencheSenhaNovamente">
     </Component>
     <Component class="javax.swing.JButton" name="botaoDeVoltar">
       <Properties>

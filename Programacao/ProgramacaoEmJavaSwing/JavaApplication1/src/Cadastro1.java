@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author bazukart
- */
 public class Cadastro1 extends javax.swing.JFrame {
     
 
@@ -15,7 +12,35 @@ public class Cadastro1 extends javax.swing.JFrame {
      */
     public Cadastro1() {
         initComponents();
+
+        // Ação do botão "Já tem uma conta?"
+        botaoCasoContaJaCriada.addActionListener(e -> {
+            new Login().setVisible(true);  // Abre a tela de Login
+            dispose();  // Fecha a tela de cadastro
+        });
+
+        // Ação do botão "Próximo"
+        botaoDeProximo.addActionListener(e -> {
+            String nome = campoPreencheNome.getText();
+            String email = campoPreencheEmail.getText();
+            String coren = campoPreencheCoren.getText();
+
+            if (nome.isEmpty() || email.isEmpty() || coren.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+                return;
+            }
+
+            // Armazenando os dados de cadastro
+            DadosCadastro.nomeCompleto = nome;
+            DadosCadastro.email = email;
+            DadosCadastro.coren = coren;
+
+            // Redireciona para a tela de cadastro 2
+            new Cadastro2().setVisible(true);
+            dispose();  // Fecha a tela de Cadastro1
+        });
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,15 +54,15 @@ public class Cadastro1 extends javax.swing.JFrame {
         panel1 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
         label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
-        jTextField1 = new javax.swing.JTextField();
-        label3 = new java.awt.Label();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        TextoDeNomeCompleto = new java.awt.Label();
+        campoPreencheNome = new javax.swing.JTextField();
+        TextoDeEmail = new java.awt.Label();
+        botaoDeProximo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        label4 = new java.awt.Label();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        TextoDeCoren = new java.awt.Label();
+        campoPreencheCoren = new javax.swing.JTextField();
+        campoPreencheEmail = new javax.swing.JTextField();
+        botaoCasoContaJaCriada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(990, 532));
@@ -66,36 +91,35 @@ public class Cadastro1 extends javax.swing.JFrame {
         label1.setFont(new java.awt.Font("Dialog", 0, 55)); // NOI18N
         label1.setText("Cadastro");
 
-        label2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label2.setText("Nome Completo:");
+        TextoDeNomeCompleto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TextoDeNomeCompleto.setText("Nome Completo:");
 
-        jTextField1.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        campoPreencheNome.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
 
-        label3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label3.setText("E-mail:");
+        TextoDeEmail.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TextoDeEmail.setText("E-mail:");
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
-        jButton1.setFont(new java.awt.Font("sansserif", 0, 30)); // NOI18N
-        jButton1.setText("Proximo");
-
-        jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel3.setText("Entrar");
+        botaoDeProximo.setBackground(new java.awt.Color(0, 255, 255));
+        botaoDeProximo.setFont(new java.awt.Font("sansserif", 0, 30)); // NOI18N
+        botaoDeProximo.setText("Proximo");
 
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel4.setText("Já possui uma conta ?");
 
-        label4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label4.setText("Corên:");
+        TextoDeCoren.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TextoDeCoren.setText("Corên:");
 
-        jTextField2.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        campoPreencheCoren.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        campoPreencheCoren.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                campoPreencheCorenActionPerformed(evt);
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+        campoPreencheEmail.setFont(new java.awt.Font("Bitstream Charter", 0, 18)); // NOI18N
+
+        botaoCasoContaJaCriada.setForeground(new java.awt.Color(0, 102, 255));
+        botaoCasoContaJaCriada.setText("Entrar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,17 +135,17 @@ public class Cadastro1 extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField3))
-                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(botaoCasoContaJaCriada, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TextoDeNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TextoDeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(campoPreencheNome)
+                                .addComponent(botaoDeProximo, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                                .addComponent(campoPreencheCoren)
+                                .addComponent(campoPreencheEmail))
+                            .addComponent(TextoDeCoren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(21, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(107, 107, 107))))
         );
@@ -132,24 +156,24 @@ public class Cadastro1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextoDeNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPreencheNome, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextoDeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPreencheEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextoDeCoren, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPreencheCoren, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(botaoDeProximo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(botaoCasoContaJaCriada))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         label1.getAccessibleContext().setAccessibleName("login");
@@ -157,9 +181,9 @@ public class Cadastro1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void campoPreencheCorenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPreencheCorenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_campoPreencheCorenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,17 +222,17 @@ public class Cadastro1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private java.awt.Label TextoDeCoren;
+    private java.awt.Label TextoDeEmail;
+    private java.awt.Label TextoDeNomeCompleto;
+    private javax.swing.JButton botaoCasoContaJaCriada;
+    private javax.swing.JButton botaoDeProximo;
+    private javax.swing.JTextField campoPreencheCoren;
+    private javax.swing.JTextField campoPreencheEmail;
+    private javax.swing.JTextField campoPreencheNome;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private java.awt.Label label1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
-    private java.awt.Label label4;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 }

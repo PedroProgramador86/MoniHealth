@@ -7,6 +7,11 @@
  *
  * @author bazukart
  */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
+
 public class Cadastro2 extends javax.swing.JFrame {
     
 
@@ -15,10 +20,51 @@ public class Cadastro2 extends javax.swing.JFrame {
      */
     public Cadastro2() {
         initComponents();
+        
         botaoDeVoltar.addActionListener(e -> {
-            new Cadastro1().setVisible(true); // Abre a nova tela
-            dispose(); // Fecha a tela atual
+            new Cadastro1().setVisible(true);
+            dispose();
         });
+
+        BotaoDeProximo.addActionListener(e -> {
+            String senha = new String(campoPreencheSenha.getPassword());
+            String confirmarSenha = new String(campoPreencheSenhaNovamente.getPassword());
+
+            if (senha.isEmpty() || confirmarSenha.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos de senha.");
+                return;
+            }
+
+            if (!senha.equals(confirmarSenha)) {
+                JOptionPane.showMessageDialog(null, "As senhas não coincidem.");
+                return;
+            }
+
+            // Inserção direta no banco de dados (sem criptografar a senha)
+            try (Connection conn = ConexaoBancoDeDados.conectar()) {
+                String sql = "INSERT INTO Enfermeiras (nome, email, coren, senha) VALUES (?, ?, ?, ?)";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, DadosCadastro.nomeCompleto);
+                stmt.setString(2, DadosCadastro.email);
+                stmt.setString(3, DadosCadastro.coren);
+                stmt.setString(4, senha); // Senha em texto claro (não criptografada)
+
+                int linhasAfetadas = stmt.executeUpdate();
+                if (linhasAfetadas > 0) {
+                    JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                    // Ao completar o cadastro, abre a tela de Login e esconde a tela atual
+                    new Login().setVisible(true);  // Abre a tela de Login
+                    setVisible(false);  // Fecha a tela de Cadastro2 (sem fechar a aplicação)
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar. Tente novamente.");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+            }
+        });
+
+
     }
 
     /**
@@ -34,13 +80,11 @@ public class Cadastro2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
-        label3 = new java.awt.Label();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        label4 = new java.awt.Label();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        TextoDeSenha = new java.awt.Label();
+        BotaoDeProximo = new javax.swing.JButton();
+        TextoDeConfirmarSenha = new java.awt.Label();
+        campoPreencheSenha = new javax.swing.JPasswordField();
+        campoPreencheSenhaNovamente = new javax.swing.JPasswordField();
         botaoDeVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,22 +116,15 @@ public class Cadastro2 extends javax.swing.JFrame {
         label2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         label2.setText("Criando Senha:");
 
-        label3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label3.setText("Senha:");
+        TextoDeSenha.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TextoDeSenha.setText("Senha:");
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 255));
-        jButton1.setFont(new java.awt.Font("sansserif", 0, 30)); // NOI18N
-        jButton1.setText("Proximo");
+        BotaoDeProximo.setBackground(new java.awt.Color(0, 255, 255));
+        BotaoDeProximo.setFont(new java.awt.Font("sansserif", 0, 30)); // NOI18N
+        BotaoDeProximo.setText("Proximo");
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel3.setText("Entrar");
-
-        jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jLabel4.setText("Já possui uma conta ?");
-
-        label4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label4.setText("Confirmar Senha:");
+        TextoDeConfirmarSenha.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        TextoDeConfirmarSenha.setText("Confirmar Senha:");
 
         botaoDeVoltar.setText("<- Voltar");
 
@@ -99,18 +136,14 @@ public class Cadastro2 extends javax.swing.JFrame {
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPasswordField1)
+                    .addComponent(BotaoDeProximo, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                    .addComponent(campoPreencheSenhaNovamente, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoPreencheSenha)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextoDeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextoDeConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botaoDeVoltar)
                                 .addGap(78, 78, 78)
@@ -132,20 +165,16 @@ public class Cadastro2 extends javax.swing.JFrame {
                         .addGap(40, 40, 40)))
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextoDeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPreencheSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextoDeConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoPreencheSenhaNovamente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(22, 22, 22))
+                .addComponent(BotaoDeProximo)
+                .addGap(37, 69, Short.MAX_VALUE))
         );
 
         label1.getAccessibleContext().setAccessibleName("login");
@@ -190,17 +219,15 @@ public class Cadastro2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoDeProximo;
+    private java.awt.Label TextoDeConfirmarSenha;
+    private java.awt.Label TextoDeSenha;
     private javax.swing.JButton botaoDeVoltar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPasswordField campoPreencheSenha;
+    private javax.swing.JPasswordField campoPreencheSenhaNovamente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private java.awt.Label label1;
     private java.awt.Label label2;
-    private java.awt.Label label3;
-    private java.awt.Label label4;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 }

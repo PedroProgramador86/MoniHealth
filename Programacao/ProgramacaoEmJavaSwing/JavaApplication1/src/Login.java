@@ -1,26 +1,67 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author bazukart
- */
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
-    
 
-    /**
-     * Creates new form NewJFrame
-     */
     public Login() {
         initComponents();
+        
+        // Ação do botão "Cadastre-se"
         botaoCadastreSe.addActionListener(e -> {
-            new Cadastro1().setVisible(true); // Abre a nova tela
-            dispose(); // Fecha a tela atual
+            new Cadastro1().setVisible(true); // Abre a nova tela de cadastro
+            dispose(); // Fecha a tela de login
+        });
+        
+        // Ação do botão "Entrar"
+        jButton1.addActionListener(e -> {
+            String email = jTextField1.getText(); // Captura o e-mail
+            String senha = new String(jPasswordField1.getPassword()); // Captura a senha
+            
+            if (verificarLogin(email, senha)) {
+                // Se o login for bem-sucedido, abre a tela de Agenda
+                new Agenda().setVisible(true);
+                dispose(); // Fecha a tela de Login
+            } else {
+                // Caso contrário, exibe uma mensagem de erro
+                JOptionPane.showMessageDialog(null, "E-mail ou Senha incorretos. Tente novamente.");
+            }
         });
     }
 
+    // Função para verificar login
+    public boolean verificarLogin(String email, String senha) {
+        String sql = "SELECT * FROM Enfermeiras WHERE Email = ? AND Senha = ?";
+
+        try (Connection conn = ConexaoBancoDeDados.conectar(); 
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, email);
+            pst.setString(2, senha);
+
+            ResultSet rs = pst.executeQuery();
+
+            // Se houver resultado, o login é bem-sucedido
+            if (rs.next()) {
+                return true; // Login bem-sucedido
+            } else {
+                return false; // Login falhou
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao verificar o login: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // O restante do código da classe Login (initComponents, etc.)
+
+
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
