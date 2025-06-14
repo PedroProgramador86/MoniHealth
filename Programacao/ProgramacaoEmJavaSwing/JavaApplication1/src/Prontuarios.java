@@ -7,12 +7,12 @@
  *
  * @author bazukart
  */
-public class Painel extends javax.swing.JFrame {
+public class Prontuarios extends javax.swing.JFrame {
 
     /**
      * Creates new form Agenda
      */
-    public Painel() {
+    public Prontuarios() {
         initComponents();
     }
 
