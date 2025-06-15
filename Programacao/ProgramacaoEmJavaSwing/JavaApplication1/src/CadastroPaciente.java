@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 public class CadastroPaciente extends javax.swing.JDialog {
 
@@ -49,7 +50,26 @@ public class CadastroPaciente extends javax.swing.JDialog {
         
         botaoDeCancelar.addActionListener(e -> dispose());
         
+        carregarEnfermeirasNaComboBox();
+        
     }
+    
+    private void carregarEnfermeirasNaComboBox() {
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT Nome FROM Enfermeiras";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            selecaoEnfermeiro.removeAllItems(); // Limpa a combo box
+
+            while (rs.next()) {
+                selecaoEnfermeiro.addItem(rs.getString("Nome"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar enfermeiras:\n" + e.getMessage());
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
