@@ -2,6 +2,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class Prontuarios extends javax.swing.JFrame {
     
@@ -12,6 +17,7 @@ public class Prontuarios extends javax.swing.JFrame {
      */
     public Prontuarios(String nomeEnfermeira) {
         this.nomeEnfermeira = nomeEnfermeira;
+        
         initComponents();
 
         nomeDaEnfermeira.setText(nomeEnfermeira);
@@ -38,12 +44,44 @@ public class Prontuarios extends javax.swing.JFrame {
 
             carregarPacientesNaTabela(); // Atualiza após cadastro
         });
+        
+    
+        
+        tabelaInformeMostraPacientes.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int linha = tabelaInformeMostraPacientes.getSelectedRow();
+                if (linha != -1) {
+                    String nome = tabelaInformeMostraPacientes.getValueAt(linha, 0).toString(); // Nome
+                    String codigo = tabelaInformeMostraPacientes.getValueAt(linha, 3).toString(); // Código único
+                    String convenio = tabelaInformeMostraPacientes.getValueAt(linha, 4).toString(); // Convênio
 
+                    // Buscar data de nascimento no banco via código
+                    String dataNascimento = "";
+                    try (Connection conn = ConexaoBancoDeDados.conectar()) {
+                        String sql = "SELECT DataDeNascimento FROM Pacientes WHERE Codigo = ?";
+                        PreparedStatement stmt = conn.prepareStatement(sql);
+                        stmt.setString(1, codigo);
+                        ResultSet rs = stmt.executeQuery();
+                        if (rs.next()) {
+                            Date data = rs.getDate("DataDeNascimento");
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            dataNascimento = sdf.format(data);
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
 
-        // Desativa botão atual
-        botaoProntuarios.setEnabled(false);
+                    // Abrir a tela de informações do paciente com os dados carregados
+                    InfoPacienteProntuarios tela = new InfoPacienteProntuarios(nomeEnfermeira);
+                    tela.setPacienteInfo(nome, dataNascimento, convenio);
+                    tela.setVisible(true);
+                    dispose(); // Fecha a tela atual
+                }
+            }
+        });
+
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -469,6 +507,23 @@ public class Prontuarios extends javax.swing.JFrame {
             System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
         }
     }
+    
+    private String obterDataNascimentoPorCodigo(String codigo) {
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT DataDeNascimento FROM Pacientes WHERE Codigo = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("DataDeNascimento");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Data não encontrada";
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoAgenda;
