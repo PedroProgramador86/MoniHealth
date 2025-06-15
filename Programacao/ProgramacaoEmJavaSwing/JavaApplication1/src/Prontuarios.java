@@ -1,20 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author bazukart
- */
 public class Prontuarios extends javax.swing.JFrame {
+    
+    private String nomeEnfermeira;
 
     /**
      * Creates new form Agenda
      */
-    public Prontuarios() {
+    public Prontuarios(String nomeEnfermeira) {
+        this.nomeEnfermeira = nomeEnfermeira;
         initComponents();
+
+        nomeDaEnfermeira.setText(nomeEnfermeira);
+        carregarPacientesNaTabela();
+
+        botaoAgenda.setSelected(false);
+        botaoPainel.setSelected(false);
+        botaoProntuarios.setSelected(true);
+
+        botaoAgenda.addActionListener(e -> {
+            new Agenda(nomeEnfermeira).setVisible(true);
+            dispose();
+        });
+
+        botaoPainel.addActionListener(e -> {
+            new Painel(nomeEnfermeira).setVisible(true);
+            dispose();
+        });
+        
+        cadastrarPaciente.addActionListener(e -> {
+            CadastroPaciente dialog = new CadastroPaciente(this, true);
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+
+            carregarPacientesNaTabela(); // Atualiza após cadastro
+        });
+
+
+        // Desativa botão atual
+        botaoProntuarios.setEnabled(false);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,14 +62,9 @@ public class Prontuarios extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        textoAtendidos = new javax.swing.JLabel();
-        textoAgendados = new javax.swing.JLabel();
-        textoFaltantes = new javax.swing.JLabel();
-        textoConfirmados = new javax.swing.JLabel();
-        NumeracaoDeConfirmados = new javax.swing.JLabel();
-        NumeracaoDeConfirmados1 = new javax.swing.JLabel();
-        NumeracaoDeConfirmados2 = new javax.swing.JLabel();
-        NumeracaoDeConfirmados3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        nomeDaEnfermeira = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -53,8 +77,9 @@ public class Prontuarios extends javax.swing.JFrame {
         jComboBox17 = new javax.swing.JComboBox<>();
         jComboBox18 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaInformeMostraPacientes = new javax.swing.JTable();
         button4 = new java.awt.Button();
+        cadastrarPaciente = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,76 +109,29 @@ public class Prontuarios extends javax.swing.JFrame {
         jLabel2.setFocusable(false);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        textoAtendidos.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
-        textoAtendidos.setForeground(new java.awt.Color(51, 255, 0));
-        textoAtendidos.setText("Atendidos");
+        jTextField1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
-        textoAgendados.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
-        textoAgendados.setText("Agendados");
-
-        textoFaltantes.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
-        textoFaltantes.setForeground(new java.awt.Color(255, 0, 51));
-        textoFaltantes.setText("Faltantes");
-
-        textoConfirmados.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
-        textoConfirmados.setForeground(new java.awt.Color(51, 51, 255));
-        textoConfirmados.setText("Confirmados");
-
-        NumeracaoDeConfirmados.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados.setForeground(new java.awt.Color(51, 51, 255));
-        NumeracaoDeConfirmados.setText("0");
-
-        NumeracaoDeConfirmados1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados1.setForeground(new java.awt.Color(255, 0, 51));
-        NumeracaoDeConfirmados1.setText("0");
-
-        NumeracaoDeConfirmados2.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados2.setText("0");
-
-        NumeracaoDeConfirmados3.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados3.setForeground(new java.awt.Color(51, 255, 0));
-        NumeracaoDeConfirmados3.setText("0");
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel3.setText("Busca por codigo:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(NumeracaoDeConfirmados3)
-                .addGap(33, 33, 33)
-                .addComponent(textoAtendidos)
-                .addGap(40, 40, 40)
-                .addComponent(NumeracaoDeConfirmados2)
-                .addGap(35, 35, 35)
-                .addComponent(textoAgendados)
-                .addGap(42, 42, 42)
-                .addComponent(NumeracaoDeConfirmados1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(textoFaltantes)
-                .addGap(18, 18, 18)
-                .addComponent(NumeracaoDeConfirmados)
-                .addGap(39, 39, 39)
-                .addComponent(textoConfirmados)
-                .addContainerGap())
+                .addGap(36, 36, 36)
+                .addComponent(jLabel3)
+                .addGap(32, 32, 32)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NumeracaoDeConfirmados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NumeracaoDeConfirmados1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NumeracaoDeConfirmados2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NumeracaoDeConfirmados3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(textoAtendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textoAgendados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textoFaltantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textoConfirmados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
                 .addContainerGap())
         );
 
@@ -177,6 +155,10 @@ public class Prontuarios extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        nomeDaEnfermeira.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        nomeDaEnfermeira.setForeground(new java.awt.Color(51, 51, 51));
+        nomeDaEnfermeira.setText("Nome da Enfermeira");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -190,7 +172,9 @@ public class Prontuarios extends javax.swing.JFrame {
                 .addComponent(botaoPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nomeDaEnfermeira)
+                .addGap(61, 61, 61))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -201,12 +185,13 @@ public class Prontuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nomeDaEnfermeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -268,17 +253,17 @@ public class Prontuarios extends javax.swing.JFrame {
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         jLabel18.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel18.setText("Periodo:");
+        jLabel18.setText("Pendências:");
 
         jLabel19.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel19.setText("Convênio:");
+        jLabel19.setText("Status:");
 
         jLabel20.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jLabel20.setText("Enfermeiro(a):");
+        jLabel20.setText("Convênio:");
 
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ultimos 30 dias", "Item 2", "Item 3", "Item 4" }));
+        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Foto e Relatorio", "Apenas Foto", "Apenas Relatorio", "Nenhuma Pêndencia" }));
 
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Item 2", "Item 3", "Item 4" }));
+        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ativo", "Desistência", "Pagamento Pendênte", "Ôbito", "Internado", " " }));
 
         jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Item 2", "Item 3", "Item 4" }));
 
@@ -317,67 +302,67 @@ public class Prontuarios extends javax.swing.JFrame {
 
         jSplitPane2.setTopComponent(jPanel3);
 
-        jTable2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaInformeMostraPacientes.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        tabelaInformeMostraPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Pendencia", "Data de Atendimento", "Convênio", "Enfermeiro(a)"
+                "Nome", "Pendência", "Status", "Codigo", "Convênio", "Enfermeiro(a)"
             }
         ));
-        jTable2.setGridColor(new java.awt.Color(102, 102, 102));
-        jTable2.setShowGrid(true);
-        jScrollPane2.setViewportView(jTable2);
+        tabelaInformeMostraPacientes.setGridColor(new java.awt.Color(102, 102, 102));
+        tabelaInformeMostraPacientes.setShowGrid(true);
+        jScrollPane2.setViewportView(tabelaInformeMostraPacientes);
 
         jSplitPane2.setRightComponent(jScrollPane2);
 
@@ -385,6 +370,11 @@ public class Prontuarios extends javax.swing.JFrame {
 
         button4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         button4.setLabel("Novo Paciente");
+
+        cadastrarPaciente.setBackground(new java.awt.Color(51, 102, 255));
+        cadastrarPaciente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        cadastrarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        cadastrarPaciente.setLabel("Cadastrar Paciente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,7 +385,9 @@ public class Prontuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +396,9 @@ public class Prontuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -439,22 +433,49 @@ public class Prontuarios extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Agenda().setVisible(true);
-            }
+            java.awt.EventQueue.invokeLater(() -> {
+            new Prontuarios("Enfermeira Teste").setVisible(true); // Apenas para testes locais
         });
+
+            
+    }
+    
+    private void carregarPacientesNaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
+        modelo.setRowCount(0); // limpa a tabela
+
+        String sql = "SELECT Nome, Codigo, Convenio FROM Pacientes ORDER BY Nome";
+
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String nome = rs.getString("Nome");
+                String codigo = rs.getString("Codigo");
+                String convenio = rs.getString("Convenio");
+
+                modelo.addRow(new Object[]{
+                    nome,
+                    "Null",              // Pendência como NULL
+                    "Ativo",           // Status padrão
+                    codigo,
+                    convenio,
+                    nomeEnfermeira     // Enfermeira logada
+                });
+            }
+
+        } catch (Exception ex) {
+            System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel NumeracaoDeConfirmados;
-    private javax.swing.JLabel NumeracaoDeConfirmados1;
-    private javax.swing.JLabel NumeracaoDeConfirmados2;
-    private javax.swing.JLabel NumeracaoDeConfirmados3;
     private javax.swing.JToggleButton botaoAgenda;
     private javax.swing.JToggleButton botaoPainel;
     private javax.swing.JToggleButton botaoProntuarios;
     private java.awt.Button button4;
+    private java.awt.Button cadastrarPaciente;
     private javax.swing.JComboBox<String> jComboBox16;
     private javax.swing.JComboBox<String> jComboBox17;
     private javax.swing.JComboBox<String> jComboBox18;
@@ -463,6 +484,7 @@ public class Prontuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -472,10 +494,8 @@ public class Prontuarios extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JLabel textoAgendados;
-    private javax.swing.JLabel textoAtendidos;
-    private javax.swing.JLabel textoConfirmados;
-    private javax.swing.JLabel textoFaltantes;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel nomeDaEnfermeira;
+    private javax.swing.JTable tabelaInformeMostraPacientes;
     // End of variables declaration//GEN-END:variables
 }

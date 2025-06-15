@@ -8,12 +8,30 @@
  * @author bazukart
  */
 public class Agenda extends javax.swing.JFrame {
-
+    private String nomeEnfermeira;
     /**
      * Creates new form Agenda
      */
-    public Agenda() {
+    
+    public Agenda(String nomeEnfermeira) {
+        this.nomeEnfermeira = nomeEnfermeira;
         initComponents();
+
+        nomeDaEnfermeira.setText(nomeEnfermeira);
+
+        botaoAgenda.setSelected(true);
+        botaoPainel.setSelected(false);
+        botaoProntuarios.setSelected(false);
+
+        botaoPainel.addActionListener(e -> {
+            new Painel(nomeEnfermeira).setVisible(true);
+            dispose();
+        });
+
+        botaoProntuarios.addActionListener(e -> {
+            new Prontuarios(nomeEnfermeira).setVisible(true);
+            dispose();
+        });
     }
 
     /**
@@ -27,9 +45,9 @@ public class Agenda extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        botaoAgenda = new javax.swing.JToggleButton();
+        botaoPainel = new javax.swing.JToggleButton();
+        botaoProntuarios = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         button1 = new java.awt.Button();
@@ -53,17 +71,17 @@ public class Agenda extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MoniHealph");
 
-        jToggleButton1.setBackground(new java.awt.Color(0, 204, 255));
-        jToggleButton1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jToggleButton1.setText("Agenda");
+        botaoAgenda.setBackground(new java.awt.Color(0, 204, 255));
+        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoAgenda.setText("Agenda");
 
-        jToggleButton2.setBackground(new java.awt.Color(0, 204, 255));
-        jToggleButton2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jToggleButton2.setText("Painel");
+        botaoPainel.setBackground(new java.awt.Color(0, 204, 255));
+        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoPainel.setText("Painel");
 
-        jToggleButton3.setBackground(new java.awt.Color(0, 204, 255));
-        jToggleButton3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jToggleButton3.setText("Prontuarios");
+        botaoProntuarios.setBackground(new java.awt.Color(0, 204, 255));
+        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoProntuarios.setText("Prontuarios");
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
 
@@ -112,7 +130,8 @@ public class Agenda extends javax.swing.JFrame {
         );
 
         nomeDaEnfermeira.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        nomeDaEnfermeira.setText("nomeDaEnfermeira");
+        nomeDaEnfermeira.setForeground(new java.awt.Color(51, 51, 51));
+        nomeDaEnfermeira.setText("Nome da Enfermeira");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,11 +141,11 @@ public class Agenda extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(38, 38, 38)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nomeDaEnfermeira)
                 .addGap(63, 63, 63))
@@ -141,10 +160,10 @@ public class Agenda extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nomeDaEnfermeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -313,12 +332,15 @@ public class Agenda extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agenda().setVisible(true);
+                new Agenda("Nome Teste").setVisible(true); // ✅ Agora passa um nome fictício só pra teste
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botaoAgenda;
+    private javax.swing.JToggleButton botaoPainel;
+    private javax.swing.JToggleButton botaoProntuarios;
     private java.awt.Button button1;
     private java.awt.Button button2;
     private java.awt.Button button3;
@@ -333,9 +355,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JLabel nomeDaEnfermeira;
     // End of variables declaration//GEN-END:variables
 }

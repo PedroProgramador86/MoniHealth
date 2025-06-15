@@ -1,20 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author bazukart
- */
+
 public class Painel extends javax.swing.JFrame {
+    private String nomeEnfermeira;
 
     /**
      * Creates new form Agenda
      */
-    public Painel() {
-        initComponents();
+    
+    
+    
+    
+    public Painel(String nomeEnfermeira) {
+        this.nomeEnfermeira = nomeEnfermeira;
+        initComponents();     
+        
+        nomeDaenfermeira.setText(nomeEnfermeira);
+
+
+        botaoAgenda.setSelected(true);
+        botaoPainel.setSelected(false);
+        botaoProntuarios.setSelected(false);
+
+        
+        botaoPainel.setEnabled(false);
+
+        botaoAgenda.addActionListener(e -> {
+            new Agenda(nomeEnfermeira).setVisible(true);
+            dispose();
+        });
+
+        botaoProntuarios.addActionListener(e -> {
+            new Prontuarios(nomeEnfermeira).setVisible(true);
+            dispose();
+        });
+        
+        botaoCadastrarPaciente.addActionListener(e -> {
+            CadastroPaciente dialog = new CadastroPaciente(this, true);
+            dialog.setLocationRelativeTo(this); // centraliza
+            dialog.setVisible(true);
+
+            // ✅ Recarrega a tabela após fechar o JDialog
+            carregarPacientesNaTabela();
+        });
+
+        
+        carregarPacientesNaTabela();
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,6 +78,7 @@ public class Painel extends javax.swing.JFrame {
         NumeracaoDeConfirmados1 = new javax.swing.JLabel();
         NumeracaoDeConfirmados2 = new javax.swing.JLabel();
         NumeracaoDeConfirmados3 = new javax.swing.JLabel();
+        nomeDaenfermeira = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -53,8 +91,9 @@ public class Painel extends javax.swing.JFrame {
         jComboBox17 = new javax.swing.JComboBox<>();
         jComboBox18 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaInformeMostraPacientes = new javax.swing.JTable();
         button4 = new java.awt.Button();
+        botaoCadastrarPaciente = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +111,11 @@ public class Painel extends javax.swing.JFrame {
         botaoPainel.setBackground(new java.awt.Color(0, 204, 255));
         botaoPainel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoPainel.setText("Painel");
+        botaoPainel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPainelActionPerformed(evt);
+            }
+        });
 
         botaoProntuarios.setBackground(new java.awt.Color(0, 204, 255));
         botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -177,6 +221,10 @@ public class Painel extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        nomeDaenfermeira.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        nomeDaenfermeira.setForeground(new java.awt.Color(51, 51, 51));
+        nomeDaenfermeira.setText("Nome da Enfermeira");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -190,7 +238,9 @@ public class Painel extends javax.swing.JFrame {
                 .addComponent(botaoPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nomeDaenfermeira)
+                .addGap(63, 63, 63))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -201,12 +251,13 @@ public class Painel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nomeDaenfermeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -299,7 +350,7 @@ public class Painel extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,13 +363,13 @@ public class Painel extends javax.swing.JFrame {
                     .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
                     .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(jPanel3);
 
-        jTable2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaInformeMostraPacientes.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        tabelaInformeMostraPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -375,9 +426,9 @@ public class Painel extends javax.swing.JFrame {
                 "Nome", "Pendencia", "Data de Atendimento", "Convênio", "Enfermeiro(a)"
             }
         ));
-        jTable2.setGridColor(new java.awt.Color(102, 102, 102));
-        jTable2.setShowGrid(true);
-        jScrollPane2.setViewportView(jTable2);
+        tabelaInformeMostraPacientes.setGridColor(new java.awt.Color(102, 102, 102));
+        tabelaInformeMostraPacientes.setShowGrid(true);
+        jScrollPane2.setViewportView(tabelaInformeMostraPacientes);
 
         jSplitPane2.setRightComponent(jScrollPane2);
 
@@ -385,6 +436,11 @@ public class Painel extends javax.swing.JFrame {
 
         button4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         button4.setLabel("Novo Paciente");
+
+        botaoCadastrarPaciente.setBackground(new java.awt.Color(51, 102, 255));
+        botaoCadastrarPaciente.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        botaoCadastrarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        botaoCadastrarPaciente.setLabel("Cadastrar Paciente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,7 +451,9 @@ public class Painel extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,22 +462,22 @@ public class Painel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void botaoPainelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPainelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoPainelActionPerformed
+
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -441,10 +499,40 @@ public class Painel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agenda().setVisible(true);
+                new Painel("Enfermeira Teste").setVisible(true); // ✅ Exemplo para teste
             }
         });
     }
+    
+    private void carregarPacientesNaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
+        modelo.setRowCount(0); // Limpa a tabela
+
+        String sql = "SELECT Nome, Convenio FROM Pacientes ORDER BY Nome";
+
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String nome = rs.getString("Nome");
+                String convenio = rs.getString("Convenio");
+
+                modelo.addRow(new Object[]{
+                    nome,
+                    "Null",                   // Pendência
+                    "Null",                   // Data de atendimento
+                    convenio,
+                    nomeEnfermeira
+                });
+
+            }
+
+        } catch (Exception ex) {
+            System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NumeracaoDeConfirmados;
@@ -452,6 +540,7 @@ public class Painel extends javax.swing.JFrame {
     private javax.swing.JLabel NumeracaoDeConfirmados2;
     private javax.swing.JLabel NumeracaoDeConfirmados3;
     private javax.swing.JToggleButton botaoAgenda;
+    private java.awt.Button botaoCadastrarPaciente;
     private javax.swing.JToggleButton botaoPainel;
     private javax.swing.JToggleButton botaoProntuarios;
     private java.awt.Button button4;
@@ -472,7 +561,8 @@ public class Painel extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel nomeDaenfermeira;
+    private javax.swing.JTable tabelaInformeMostraPacientes;
     private javax.swing.JLabel textoAgendados;
     private javax.swing.JLabel textoAtendidos;
     private javax.swing.JLabel textoConfirmados;

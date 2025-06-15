@@ -23,8 +23,8 @@ public class Login extends javax.swing.JFrame {
             String senha = new String(jPasswordField1.getPassword()); // Captura a senha
             
             if (verificarLogin(email, senha)) {
-                // Se o login for bem-sucedido, abre a tela de Agenda
-                new Agenda().setVisible(true);
+                String nome = buscarNomeEnfermeira(email); // Busca o nome no banco
+                new Agenda(nome).setVisible(true);         // Passa o nome para a tela Agenda
                 dispose(); // Fecha a tela de Login
             } else {
                 // Caso contrário, exibe uma mensagem de erro
@@ -55,6 +55,22 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao verificar o login: " + e.getMessage());
             return false;
         }
+    }
+    
+        public String buscarNomeEnfermeira(String email) {
+        String sql = "SELECT Nome FROM Enfermeiras WHERE Email = ?";
+        try (Connection conn = ConexaoBancoDeDados.conectar();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getString("Nome");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome: " + e.getMessage());
+        }
+        return "";
     }
 
     // O restante do código da classe Login (initComponents, etc.)
