@@ -82,9 +82,9 @@ public class Prontuarios extends javax.swing.JFrame {
         });
         
         botaoDeslogarConta.addActionListener(e -> {
-            new Login().setVisible(true); // abre a tela de login
-            dispose(); // fecha a tela atual
-        });
+        new Login().setVisible(true); // abre a tela de login
+        dispose(); // fecha a tela atual
+    });
 
 
     }
