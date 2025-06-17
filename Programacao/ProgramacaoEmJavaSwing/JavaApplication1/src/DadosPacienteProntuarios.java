@@ -9,9 +9,14 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
         
         botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InfoPacienteProntuarios tela = new InfoPacienteProntuarios(nomeEnfermeira);
+                InfoPacienteProntuarios tela = new InfoPacienteProntuarios(
+                    nomeEnfermeira,
+                    nomeDoPacienteSelecionado2.getText(),
+                    dataDeNascimentoDoPaciente.getText(),
+                    convenioDoPaciente.getText()
+                );
                 tela.setVisible(true);
-                dispose(); // Fecha esta tela
+                dispose();
             }
         });
 

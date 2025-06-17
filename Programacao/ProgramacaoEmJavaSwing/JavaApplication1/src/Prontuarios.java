@@ -11,6 +11,9 @@ import java.util.Date;
 public class Prontuarios extends javax.swing.JFrame {
     
     private String nomeEnfermeira;
+    private String nomePaciente;
+    private String dataNascimentoPaciente;
+    private String convenioPaciente;
 
     /**
      * Creates new form Agenda
@@ -19,7 +22,9 @@ public class Prontuarios extends javax.swing.JFrame {
         this.nomeEnfermeira = nomeEnfermeira;
         
         initComponents();
-
+        
+        
+        
         nomeDaEnfermeira.setText(nomeEnfermeira);
         carregarPacientesNaTabela();
 
@@ -73,8 +78,9 @@ public class Prontuarios extends javax.swing.JFrame {
                     }
 
                     // Abrir a tela de informações do paciente com os dados carregados
-                    InfoPacienteProntuarios tela = new InfoPacienteProntuarios(nomeEnfermeira);
-                    tela.setPacienteInfo(nome, dataNascimento, convenio);
+
+                    InfoPacienteProntuarios tela = new InfoPacienteProntuarios(nomeEnfermeira, nome, dataNascimento, convenio);
+                    
                     tela.setVisible(true);
                     dispose(); // Fecha a tela atual
                 }
@@ -496,20 +502,17 @@ public class Prontuarios extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
         modelo.setRowCount(0); // limpa a tabela
 
-        String sql = """
-            SELECT p.Nome, p.Codigo, p.Convenio, pr.StatusPaciente
-            FROM Pacientes p
-            LEFT JOIN (
-                SELECT pp1.NomePaciente, pp1.StatusPaciente
-                FROM ProntuariosPaciente pp1
-                INNER JOIN (
-                    SELECT NomePaciente, MAX(DataDeAlteracao) AS UltimaData
-                    FROM ProntuariosPaciente
-                    GROUP BY NomePaciente
-                ) ult ON pp1.NomePaciente = ult.NomePaciente AND pp1.DataDeAlteracao = ult.UltimaData
-            ) pr ON pr.NomePaciente = p.Nome
-            ORDER BY p.Nome
-        """;
+            String sql = """
+                SELECT p.Nome, p.Codigo, p.Convenio,
+                       (SELECT pp1.StatusPaciente
+                        FROM ProntuariosPaciente pp1
+                        WHERE pp1.NomePaciente = p.Nome
+                        ORDER BY pp1.DataDeAlteracao DESC
+                        LIMIT 1) AS StatusPaciente
+                FROM Pacientes p
+                ORDER BY p.Nome
+            """;
+
 
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
