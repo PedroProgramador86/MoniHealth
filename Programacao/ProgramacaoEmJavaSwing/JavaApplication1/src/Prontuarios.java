@@ -496,7 +496,21 @@ public class Prontuarios extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
         modelo.setRowCount(0); // limpa a tabela
 
-        String sql = "SELECT Nome, Codigo, Convenio FROM Pacientes ORDER BY Nome";
+        String sql = """
+            SELECT p.Nome, p.Codigo, p.Convenio, pr.StatusPaciente
+            FROM Pacientes p
+            LEFT JOIN (
+                SELECT pp1.NomePaciente, pp1.StatusPaciente
+                FROM ProntuariosPaciente pp1
+                INNER JOIN (
+                    SELECT NomePaciente, MAX(DataDeAlteracao) AS UltimaData
+                    FROM ProntuariosPaciente
+                    GROUP BY NomePaciente
+                ) ult ON pp1.NomePaciente = ult.NomePaciente AND pp1.DataDeAlteracao = ult.UltimaData
+            ) pr ON pr.NomePaciente = p.Nome
+            ORDER BY p.Nome
+        """;
+
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -506,20 +520,26 @@ public class Prontuarios extends javax.swing.JFrame {
                 String nome = rs.getString("Nome");
                 String codigo = rs.getString("Codigo");
                 String convenio = rs.getString("Convenio");
+                String status = rs.getString("StatusPaciente");
+
+                if (status == null || status.isEmpty()) {
+                    status = "Ativo"; // valor padrão se ainda não foi definido
+                }
 
                 modelo.addRow(new Object[]{
                     nome,
                     "Null",              // Pendência como NULL
-                    "Ativo",           // Status padrão
+                    status,
                     codigo,
                     convenio,
-                    nomeEnfermeira     // Enfermeira logada
+                    nomeEnfermeira
                 });
             }
 
         } catch (Exception ex) {
             System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
         }
+
     }
     
     private String obterDataNascimentoPorCodigo(String codigo) {

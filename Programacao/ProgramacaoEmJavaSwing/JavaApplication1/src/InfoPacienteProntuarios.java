@@ -26,6 +26,21 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                 botaoVoltarActionPerformed(evt);
             }
         });
+        
+        botaoMostrarInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Supondo que você queira passar o nome, a data e o convênio:
+                String nome = nomeDoPacienteSelecionado.getText();
+                String dataNascimento = dataDeNascimentoDoPaciente.getText();
+                String convenio = convenioDoPaciente.getText();
+
+                DadosPacienteProntuarios tela = new DadosPacienteProntuarios(nomeEnfermeira, nome, dataNascimento, convenio);
+                tela.setVisible(true);
+                dispose(); // Se quiser fechar a tela atual
+            }
+        });
+
+        
     }
 
     
@@ -120,7 +135,6 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         dataDeNascimentoDoPaciente = new javax.swing.JLabel();
         convenioDoPaciente = new javax.swing.JLabel();
-        textoImagensCadastradas = new javax.swing.JLabel();
         textoImagensCadastradas1 = new javax.swing.JLabel();
         nomeDaEnfermeiraQueRegistrouAImagem = new javax.swing.JLabel();
         textoImagensCadastradas2 = new javax.swing.JLabel();
@@ -130,6 +144,8 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         campoAlterarDataDeAlteracao = new javax.swing.JFormattedTextField();
         textoDataDeAlteracao = new javax.swing.JLabel();
         botaoMostrarInfo = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        alteraStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -356,9 +372,6 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         convenioDoPaciente.setForeground(new java.awt.Color(0, 153, 153));
         convenioDoPaciente.setText("Convênio do paciente Selecionado");
 
-        textoImagensCadastradas.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        textoImagensCadastradas.setText("Historico de Imagens Cadastradas");
-
         textoImagensCadastradas1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         textoImagensCadastradas1.setText("Registrado por Enfermeiro(a):");
 
@@ -387,6 +400,11 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         botaoMostrarInfo.setForeground(new java.awt.Color(255, 255, 255));
         botaoMostrarInfo.setText("Mostrar Info");
 
+        jLabel10.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel10.setText("Status:");
+
+        alteraStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Pagamento Pendente", "Internado", "Desativado", "Obito" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -405,26 +423,26 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                         .addComponent(dataDeNascimentoDoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(textoImagensCadastradas))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(textoImagensCadastradas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(textoDataDeAlteracao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoAlterarDataDeAlteracao))
-                            .addComponent(botaoMostrarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(textoImagensCadastradas1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(textoDataDeAlteracao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(textoImagensCadastradas2)
-                            .addComponent(nomeDaEnfermeiraQueRegistrouAImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(campoAlterarDataDeAlteracao))
+                    .addComponent(botaoMostrarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(textoImagensCadastradas2)
+                    .addComponent(nomeDaEnfermeiraQueRegistrouAImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(alteraStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,9 +457,11 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(convenioDoPaciente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textoImagensCadastradas)
-                .addGap(95, 95, 95)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(alteraStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(100, 100, 100)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoImagensCadastradas1)
                     .addComponent(nomeDaEnfermeiraQueRegistrouAImagem))
@@ -549,13 +569,14 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         String lesao = getTextoCheckboxLesao();
 
         try (Connection conn = ConexaoBancoDeDados.conectar()) {
-            String sql = "INSERT INTO ProntuariosPaciente (NomePaciente, FatorDesencadeante, Etiologia, PerdaTecidual, LesaoPressao, DataDeAlteracao) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO ProntuariosPaciente (NomePaciente, FatorDesencadeante, Etiologia, PerdaTecidual, LesaoPressao, StatusPaciente, DataDeAlteracao) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nomePaciente);
             stmt.setString(2, fator);
             stmt.setString(3, etiologia);
             stmt.setString(4, perdaTecido);
             stmt.setString(5, lesao);
+            stmt.setString(6, alteraStatus.getSelectedItem().toString());
 
             // Convertendo data do campo para java.sql.Date
             java.sql.Date dataSql = null;
@@ -567,7 +588,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                 return;
             }
 
-            stmt.setDate(6, dataSql);
+            stmt.setDate(7, dataSql);
 
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "Prontuário salvo com sucesso.");
@@ -575,12 +596,14 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao salvar prontuário.");
         }
+
     }
 
     
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> alteraStatus;
     private javax.swing.JButton botaoMostrarInfo;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JButton botaoVoltar;
@@ -610,6 +633,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -626,7 +650,6 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
     private javax.swing.JLabel nomeDoPacienteSelecionado;
     private javax.swing.JLabel nomeDoPacienteSelecionado2;
     private javax.swing.JLabel textoDataDeAlteracao;
-    private javax.swing.JLabel textoImagensCadastradas;
     private javax.swing.JLabel textoImagensCadastradas1;
     private javax.swing.JLabel textoImagensCadastradas2;
     // End of variables declaration//GEN-END:variables
