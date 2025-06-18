@@ -503,7 +503,7 @@ public class Prontuarios extends javax.swing.JFrame {
         modelo.setRowCount(0); // limpa a tabela
 
             String sql = """
-                SELECT p.Nome, p.Codigo, p.Convenio,
+                SELECT p.Nome, p.Codigo, p.Convenio, p.Enfermeira,
                        (SELECT pp1.StatusPaciente
                         FROM ProntuariosPaciente pp1
                         WHERE pp1.NomePaciente = p.Nome
@@ -523,6 +523,7 @@ public class Prontuarios extends javax.swing.JFrame {
                 String nome = rs.getString("Nome");
                 String codigo = rs.getString("Codigo");
                 String convenio = rs.getString("Convenio");
+                String enfermeira = rs.getString("Enfermeira");
                 String status = rs.getString("StatusPaciente");
 
                 if (status == null || status.isEmpty()) {
@@ -535,7 +536,7 @@ public class Prontuarios extends javax.swing.JFrame {
                     status,
                     codigo,
                     convenio,
-                    nomeEnfermeira
+                    enfermeira != null ? enfermeira : "Não informado"
                 });
             }
 

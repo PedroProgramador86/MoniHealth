@@ -15,8 +15,9 @@ public class CadastroPaciente extends javax.swing.JDialog {
         
         botaoDeConfirmar.addActionListener(e -> {
         try (Connection conn = ConexaoBancoDeDados.conectar()) {
-            String sql = "INSERT INTO Pacientes (Nome, Sexo, DataDeNascimento, CPF, EstadoCivil, Codigo, Convenio, Telefone, Email, Endereco, Observacoes) "
-                       + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Pacientes (Nome, Sexo, DataDeNascimento, CPF, EstadoCivil, Codigo, Convenio, Enfermeira, Telefone, Email, Endereco, Observacoes) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, campoNomeCompleto.getText().trim());
@@ -34,10 +35,11 @@ public class CadastroPaciente extends javax.swing.JDialog {
             stmt.setString(5, selecaoEstadoCivil.getSelectedItem().toString());
             stmt.setString(6, campoCodigo.getText().trim());
             stmt.setString(7, campoConvenio.getText().trim());
-            stmt.setString(8, campoTelefone.getText().trim());
-            stmt.setString(9, campoEmail.getText().trim());
-            stmt.setString(10, campoEndereco.getText().trim());
-            stmt.setString(11, campoObservacoes.getText().trim());
+            stmt.setString(8, selecaoEnfermeiro.getSelectedItem().toString());
+            stmt.setString(9, campoTelefone.getText().trim());
+            stmt.setString(10, campoEmail.getText().trim());
+            stmt.setString(11, campoEndereco.getText().trim());
+            stmt.setString(12, campoObservacoes.getText().trim());
 
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
