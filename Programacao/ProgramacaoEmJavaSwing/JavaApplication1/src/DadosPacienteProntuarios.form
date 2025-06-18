@@ -71,7 +71,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="MoniHealph"/>
+            <Property name="text" type="java.lang.String" value="MoniHealth"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JSplitPane" name="jSplitPane1">
@@ -159,22 +159,29 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="status1" max="32767" attributes="0"/>
-                                  <Component id="status" max="32767" attributes="0"/>
-                                  <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="etiologiaCorrespondente" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fatorDesencadenteCorrespondente" min="-2" max="-2" attributes="0"/>
-                                  <Component id="perdaTecidualCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lesaoPorPressaoCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="statusCorrespondente" min="-2" max="-2" attributes="0"/>
-                                  <Component id="descricaoCorrespondente" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="descricaoCorrespondente" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="status1" max="32767" attributes="0"/>
+                                          <Component id="status" max="32767" attributes="0"/>
+                                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="etiologiaCorrespondente" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fatorDesencadenteCorrespondente" min="-2" max="-2" attributes="0"/>
+                                          <Component id="perdaTecidualCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lesaoPorPressaoCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="statusCorrespondente" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace pref="55" max="32767" attributes="0"/>
                           </Group>
@@ -209,11 +216,10 @@
                                   <Component id="statusCorrespondente" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="descricaoCorrespondente" min="-2" pref="135" max="-2" attributes="0"/>
-                                  <Component id="status1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="112" max="32767" attributes="0"/>
+                              <Component id="status1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="descricaoCorrespondente" min="-2" pref="102" max="-2" attributes="0"/>
+                              <EmptySpace pref="113" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

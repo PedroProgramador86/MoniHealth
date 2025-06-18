@@ -109,7 +109,7 @@ public class Painel extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("MoniHealph");
+        jLabel1.setText("MoniHealth");
 
         botaoAgenda.setBackground(new java.awt.Color(0, 204, 255));
         botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N

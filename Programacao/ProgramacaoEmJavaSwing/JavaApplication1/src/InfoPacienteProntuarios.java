@@ -143,7 +143,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         nomeDaEnfermeiraQueRegistrouAImagem = new javax.swing.JLabel();
         textoImagensCadastradas2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        descricaoDaImagemSelecionada = new javax.swing.JTextArea();
+        descricaoDeObservacoes = new javax.swing.JTextArea();
         botaoSalvar = new javax.swing.JButton();
         campoAlterarDataDeAlteracao = new javax.swing.JFormattedTextField();
         textoDataDeAlteracao = new javax.swing.JLabel();
@@ -167,7 +167,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("MoniHealph");
+        jLabel1.setText("MoniHealth");
 
         jSplitPane1.setDividerLocation(390);
 
@@ -396,9 +396,9 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         textoImagensCadastradas2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         textoImagensCadastradas2.setText("Informações Registradas:");
 
-        descricaoDaImagemSelecionada.setColumns(20);
-        descricaoDaImagemSelecionada.setRows(5);
-        jScrollPane1.setViewportView(descricaoDaImagemSelecionada);
+        descricaoDeObservacoes.setColumns(20);
+        descricaoDeObservacoes.setRows(5);
+        jScrollPane1.setViewportView(descricaoDeObservacoes);
 
         botaoSalvar.setBackground(new java.awt.Color(0, 255, 0));
         botaoSalvar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -662,7 +662,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         String lesao = getTextoCheckboxLesao();
 
         try (Connection conn = ConexaoBancoDeDados.conectar()) {
-            String sql = "INSERT INTO ProntuariosPaciente (NomePaciente, FatorDesencadeante, Etiologia, PerdaTecidual, LesaoPressao, StatusPaciente, DataDeAlteracao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO ProntuariosPaciente (NomePaciente, FatorDesencadeante, Etiologia, PerdaTecidual, LesaoPressao, StatusPaciente, DataDeAlteracao, Descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nomePaciente);
             stmt.setString(2, fator);
@@ -670,6 +670,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
             stmt.setString(4, perdaTecido);
             stmt.setString(5, lesao);
             stmt.setString(6, alteraStatus.getSelectedItem().toString());
+            
 
             // Convertendo data do campo para java.sql.Date
             java.sql.Date dataSql = null;
@@ -682,6 +683,8 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
             }
 
             stmt.setDate(7, dataSql);
+            
+            stmt.setString(8, descricaoDeObservacoes.getText());
 
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "Prontuário salvo com sucesso.");
@@ -703,7 +706,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField campoAlterarDataDeAlteracao;
     private javax.swing.JLabel convenioDoPaciente;
     private javax.swing.JLabel dataDeNascimentoDoPaciente;
-    private javax.swing.JTextArea descricaoDaImagemSelecionada;
+    private javax.swing.JTextArea descricaoDeObservacoes;
     private javax.swing.JPanel fundoAzul;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;

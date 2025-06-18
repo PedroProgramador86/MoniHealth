@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DadosPacienteProntuarios extends javax.swing.JFrame {
 
@@ -25,6 +30,81 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
         nomeDoPacienteSelecionado2.setText(nomePaciente);
         dataDeNascimentoDoPaciente.setText(dataNascimento);
         convenioDoPaciente.setText(convenio);
+        
+        // Carregar as datas de alteração do prontuário para o paciente atual no JComboBox
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT DataDeAlteracao FROM ProntuariosPaciente WHERE NomePaciente = ? ORDER BY DataDeAlteracao DESC";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nomePaciente); // Usa o nome do paciente passado ao construtor
+            ResultSet rs = stmt.executeQuery();
+
+            selecaoDeData.removeAllItems(); // Limpa itens anteriores, se houver
+
+            boolean encontrou = false;
+            while (rs.next()) {
+                Date data = rs.getDate("DataDeAlteracao");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                selecaoDeData.addItem(sdf.format(data));
+                encontrou = true;
+            }
+
+            if (!encontrou) {
+                selecaoDeData.addItem("Nenhuma data registrada");
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            selecaoDeData.addItem("Erro ao carregar datas");
+        }
+        
+
+        // Adiciona ação quando o usuário seleciona uma data no combo
+        selecaoDeData.addActionListener(e -> {
+            String dataSelecionada = (String) selecaoDeData.getSelectedItem();
+            if (dataSelecionada == null || dataSelecionada.equals("Nenhuma data registrada") || dataSelecionada.equals("Erro ao carregar datas")) {
+                fatorDesencadenteCorrespondente.setText("-");
+                etiologiaCorrespondente.setText("-");
+                perdaTecidualCorrespondente.setText("-");
+                lesaoPorPressaoCorrespondente.setText("-");
+                statusCorrespondente.setText("-");
+                descricaoCorrespondente.setText("-");
+                return;
+            }
+
+            try (Connection conn = ConexaoBancoDeDados.conectar()) {
+                String sql = """
+                    SELECT FatorDesencadeante, Etiologia, PerdaTecidual, LesaoPressao, StatusPaciente, Descricao
+                    FROM ProntuariosPaciente
+                    WHERE NomePaciente = ? AND DataDeAlteracao = STR_TO_DATE(?, '%d/%m/%Y')
+                """;
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, nomeDoPacienteSelecionado2.getText());
+                stmt.setString(2, dataSelecionada);
+
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    fatorDesencadenteCorrespondente.setText(rs.getString("FatorDesencadeante"));
+                    etiologiaCorrespondente.setText(rs.getString("Etiologia"));
+                    perdaTecidualCorrespondente.setText(rs.getString("PerdaTecidual"));
+                    lesaoPorPressaoCorrespondente.setText(rs.getString("LesaoPressao"));
+                    statusCorrespondente.setText(rs.getString("StatusPaciente"));
+                    descricaoCorrespondente.setText(rs.getString("Descricao"));
+                } else {
+                    fatorDesencadenteCorrespondente.setText("Sem dados");
+                    etiologiaCorrespondente.setText("Sem dados");
+                    perdaTecidualCorrespondente.setText("Sem dados");
+                    lesaoPorPressaoCorrespondente.setText("Sem dados");
+                    statusCorrespondente.setText("Sem dados");
+                    descricaoCorrespondente.setText("Sem dados");
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        
+        
+
         
     }
 
@@ -73,7 +153,7 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("MoniHealph");
+        jLabel1.setText("MoniHealth");
 
         jSplitPane1.setDividerLocation(390);
 
@@ -152,21 +232,25 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(status1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiologiaCorrespondente)
-                    .addComponent(fatorDesencadenteCorrespondente)
-                    .addComponent(perdaTecidualCorrespondente)
-                    .addComponent(lesaoPorPressaoCorrespondente)
-                    .addComponent(statusCorrespondente)
-                    .addComponent(descricaoCorrespondente))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(descricaoCorrespondente))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(status1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiologiaCorrespondente)
+                            .addComponent(fatorDesencadenteCorrespondente)
+                            .addComponent(perdaTecidualCorrespondente)
+                            .addComponent(lesaoPorPressaoCorrespondente)
+                            .addComponent(statusCorrespondente))))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -193,10 +277,10 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
                     .addComponent(status)
                     .addComponent(statusCorrespondente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descricaoCorrespondente, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status1))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addComponent(status1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(descricaoCorrespondente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel2);
