@@ -59,7 +59,7 @@ public class Agenda extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         button4 = new java.awt.Button();
-        button5 = new java.awt.Button();
+        novoAgendamento = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -246,25 +246,10 @@ public class Agenda extends javax.swing.JFrame {
                 {"16:30", null, null, null, null, null, null, null},
                 {"17:00", null, null, null, null, null, null, null},
                 {"17:30", null, null, null, null, null, null, null},
-                {"18:00", null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {"18:00", null, null, null, null, null, null, null}
             },
             new String [] {
-                "Horario", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Title 8"
+                "Horario", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado"
             }
         ));
         jTable2.setSelectionBackground(new java.awt.Color(0, 0, 0));
@@ -276,8 +261,8 @@ public class Agenda extends javax.swing.JFrame {
         button4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         button4.setLabel("Novo Paciente");
 
-        button5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        button5.setLabel("+ Novo Agendamento");
+        novoAgendamento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        novoAgendamento.setLabel("+ Novo Agendamento");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -289,7 +274,7 @@ public class Agenda extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(novoAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
@@ -301,7 +286,7 @@ public class Agenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(button5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(novoAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -352,7 +337,6 @@ public class Agenda extends javax.swing.JFrame {
     private java.awt.Button button2;
     private java.awt.Button button3;
     private java.awt.Button button4;
-    private java.awt.Button button5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -363,5 +347,6 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel nomeDaEnfermeira;
+    private java.awt.Button novoAgendamento;
     // End of variables declaration//GEN-END:variables
 }

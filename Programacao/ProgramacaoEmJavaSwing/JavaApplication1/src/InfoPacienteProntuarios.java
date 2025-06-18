@@ -28,7 +28,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
             dialog.setVisible(true);
         });
                 
-        setPacienteInfo(nomePaciente, dataNascimento, convenio);
+        setPacienteInfo(nomePaciente, dataNascimento, convenio, nomeEnfermeira);
 
 
 
@@ -656,11 +656,12 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
     
     
     
-    public void setPacienteInfo(String nome, String dataNascimento, String convenio) {
+    public void setPacienteInfo(String nome, String dataNascimento, String convenio, String nomeEnfermeira) {
         nomeDoPacienteSelecionado.setText(nome);
         nomeDoPacienteSelecionado2.setText(nome);
         dataDeNascimentoDoPaciente.setText(dataNascimento);
         convenioDoPaciente.setText(convenio);
+        nomeDaEnfermeiraQueRegistrouAImagem.setText(nomeEnfermeira);
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
