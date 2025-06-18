@@ -21,6 +21,13 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         this.nomeEnfermeira = nomeEnfermeira;    
         
         initComponents();
+        
+        adicionarImagem.addActionListener(e -> {
+            AdicionarImagem dialog = new AdicionarImagem(this, true);
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+        });
+                
         setPacienteInfo(nomePaciente, dataNascimento, convenio);
 
 
@@ -36,7 +43,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                 botaoVoltarActionPerformed(evt);
             }
         });
-        
+                
         botaoMostrarInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DadosPacienteProntuarios tela = new DadosPacienteProntuarios(
@@ -51,6 +58,10 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         });
         
     }
+    
+        
+
+
 
     
     private String getTextoCheckboxFator() {
@@ -95,6 +106,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         tela.setVisible(true);
         this.dispose();
     }
+
 
 
     @SuppressWarnings("unchecked")
@@ -150,7 +162,6 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         botaoMostrarInfo = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         alteraStatus = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -160,6 +171,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        adicionarImagem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -419,10 +431,6 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
 
         alteraStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ativo", "Pagamento Pendente", "Internado", "Desativado", "Obito" }));
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 204));
-        jButton1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jButton1.setText("Adicionar Imagem");
-
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel2.setText("Progresso de Imagens:");
 
@@ -486,6 +494,10 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        adicionarImagem.setBackground(new java.awt.Color(0, 255, 204));
+        adicionarImagem.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        adicionarImagem.setText("Adicionar Imagem");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -512,7 +524,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoAlterarDataDeAlteracao))
                     .addComponent(botaoMostrarInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(adicionarImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
@@ -579,24 +591,25 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoImagensCadastradas1)
-                    .addComponent(nomeDaEnfermeiraQueRegistrouAImagem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoImagensCadastradas2)
-                    .addComponent(campoAlterarDataDeAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoDataDeAlteracao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textoImagensCadastradas1)
+                            .addComponent(nomeDaEnfermeiraQueRegistrouAImagem))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textoImagensCadastradas2)
+                            .addComponent(campoAlterarDataDeAlteracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoDataDeAlteracao))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(adicionarImagem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoMostrarInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -699,6 +712,7 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adicionarImagem;
     private javax.swing.JComboBox<String> alteraStatus;
     private javax.swing.JButton botaoMostrarInfo;
     private javax.swing.JButton botaoSalvar;
@@ -708,7 +722,6 @@ public class InfoPacienteProntuarios extends javax.swing.JFrame {
     private javax.swing.JLabel dataDeNascimentoDoPaciente;
     private javax.swing.JTextArea descricaoDeObservacoes;
     private javax.swing.JPanel fundoAzul;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
