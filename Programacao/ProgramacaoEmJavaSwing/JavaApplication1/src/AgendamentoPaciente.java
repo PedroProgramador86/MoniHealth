@@ -81,14 +81,14 @@ public class AgendamentoPaciente extends javax.swing.JDialog {
                 return; // Não permite salvar se os campos estiverem vazios
             }
 
-            // Obter o ID do paciente e enfermeira
-            int pacienteId = obterIdPaciente(nomePacienteSelecionado);
-            int enfermeiraId = obterIdEnfermeira(enfermeiroDoPaciente.getText());
+            // Aqui, ao invés de usar IDs, vamos pegar os nomes diretamente
+            String nomePaciente = nomePacienteSelecionado; // O nome do paciente selecionado
+            String nomeEnfermeira = enfermeiroDoPaciente.getText(); // Nome do enfermeiro (pode ser obtido de algum campo de texto)
 
-            // Verificar se o ID do paciente e enfermeira foram encontrados
-            if (pacienteId != -1 && enfermeiraId != -1) {
-                // Inserir dados no banco de dados
-                inserirAgendamento(pacienteId, enfermeiraId, formattedDate, horaAgendamento, tipoAgendamento, statusAgendamento, observacoes, diaDaSemana);
+            // Verificar se o nome do paciente e enfermeira foram encontrados
+            if (nomePaciente != null && !nomePaciente.isEmpty() && nomeEnfermeira != null && !nomeEnfermeira.isEmpty()) {
+                // Inserir dados no banco de dados, usando os nomes diretamente
+                inserirAgendamento(nomePaciente, nomeEnfermeira, formattedDate, horaAgendamento, tipoAgendamento, statusAgendamento, observacoes, diaDaSemana);
 
                 // Atualizar a tabela da agenda após inserção
                 agenda.atualizarTabelaAgenda();
@@ -96,6 +96,9 @@ public class AgendamentoPaciente extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Paciente ou Enfermeira não encontrados.");
             }
         });
+
+
+
 
 
         
@@ -341,47 +344,7 @@ public class AgendamentoPaciente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AgendamentoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AgendamentoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AgendamentoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AgendamentoPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                AgendamentoPaciente dialog = new AgendamentoPaciente(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+
     
     private void carregarPacientesNoComboBox() {
         try (Connection conn = ConexaoBancoDeDados.conectar()) {
@@ -430,73 +393,30 @@ public class AgendamentoPaciente extends javax.swing.JDialog {
     }
 
 
-
-    private void selecaoDePacientesCadastradosActionPerformed(java.awt.event.ActionEvent evt) {
-        String nomePacienteSelecionado = (String) selecaoDePacientesCadastrados.getSelectedItem();
-        if (nomePacienteSelecionado != null && !nomePacienteSelecionado.equals("Nenhum paciente encontrado")) {
-            carregarDadosPaciente(nomePacienteSelecionado);
-        }
-    }
-    
-    private int obterIdPaciente(String nomePaciente) {
+    private void inserirAgendamento(String nomePaciente, String nomeEnfermeira, String dataAgendamento, String horaAgendamento, 
+                                 String tipoAgendamento, String statusAgendamento, String observacoes, String diaDaSemana) {
         try (Connection conn = ConexaoBancoDeDados.conectar()) {
-            String sql = "SELECT Id FROM Pacientes WHERE Nome = ? LIMIT 1";
+            String sql = "INSERT INTO Agendamentos (NomePaciente, NomeEnfermeira, DataAgendamento, HoraAgendamento, " +
+                         "TipoAgendamento, StatusAgendamento, Observacoes, DiaDaSemana) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nomePaciente);
-            ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                return rs.getInt("Id");
-            }
+            stmt.setString(1, nomePaciente);            // Nome do paciente
+            stmt.setString(2, nomeEnfermeira);          // Nome da enfermeira
+            stmt.setString(3, dataAgendamento);         // Data do agendamento
+            stmt.setString(4, horaAgendamento);         // Hora do agendamento
+            stmt.setString(5, tipoAgendamento);         // Tipo do agendamento
+            stmt.setString(6, statusAgendamento);       // Status do agendamento
+            stmt.setString(7, observacoes);             // Observações
+            stmt.setString(8, diaDaSemana);             // Dia da semana
+
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Agendamento realizado com sucesso.");
+            dispose(); // Fechar a tela de agendamento após salvar
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao realizar o agendamento.");
         }
-        return -1;  // Caso o paciente não seja encontrado
     }
-
-    private int obterIdEnfermeira(String nomeEnfermeira) {
-        try (Connection conn = ConexaoBancoDeDados.conectar()) {
-            String sql = "SELECT Id FROM Enfermeiras WHERE Nome = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nomeEnfermeira);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return rs.getInt("Id");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1;  // Caso a enfermeira não seja encontrada
-   }
-
-
-    private void inserirAgendamento(int pacienteId, int enfermeiraId, String dataAgendamento, String horaAgendamento, 
-                                    String tipoAgendamento, String statusAgendamento, String observacoes, String diaDaSemana) {
-       try (Connection conn = ConexaoBancoDeDados.conectar()) {
-           String sql = "INSERT INTO Agendamentos (PacienteId, EnfermeiraId, DataAgendamento, HoraAgendamento, " +
-                        "TipoAgendamento, StatusAgendamento, Observacoes, DiaDaSemana) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-           PreparedStatement stmt = conn.prepareStatement(sql);
-
-           stmt.setInt(1, pacienteId);               // PacienteId
-           stmt.setInt(2, enfermeiraId);             // EnfermeiraId
-           stmt.setString(3, dataAgendamento);       // DataAgendamento
-           stmt.setString(4, horaAgendamento);       // HoraAgendamento
-           stmt.setString(5, tipoAgendamento);       // TipoAgendamento
-           stmt.setString(6, statusAgendamento);     // StatusAgendamento
-           stmt.setString(7, observacoes);           // Observacoes
-           stmt.setString(8, diaDaSemana);           // DiaDaSemana
-
-           // Executar a consulta
-           stmt.executeUpdate();
-
-           JOptionPane.showMessageDialog(null, "Agendamento realizado com sucesso.");
-           dispose(); // Fechar a tela de agendamento após salvar
-       } catch (Exception e) {
-           e.printStackTrace();
-           JOptionPane.showMessageDialog(null, "Erro ao realizar o agendamento.");
-       }
-   }
 
 
 
