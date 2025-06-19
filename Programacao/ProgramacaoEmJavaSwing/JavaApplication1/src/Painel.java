@@ -136,7 +136,7 @@ public class Painel extends javax.swing.JFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         textoAtendidos.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
-        textoAtendidos.setForeground(new java.awt.Color(51, 255, 0));
+        textoAtendidos.setForeground(new java.awt.Color(51, 204, 0));
         textoAtendidos.setText("Atendidos");
 
         textoAgendados.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
@@ -162,7 +162,7 @@ public class Painel extends javax.swing.JFrame {
         NumeracaoDeConfirmados2.setText("0");
 
         NumeracaoDeConfirmados3.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados3.setForeground(new java.awt.Color(51, 255, 0));
+        NumeracaoDeConfirmados3.setForeground(new java.awt.Color(51, 204, 0));
         NumeracaoDeConfirmados3.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

@@ -1,11 +1,13 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class Agenda extends javax.swing.JFrame {
     private String nomeEnfermeira;
-    /**
-     * Creates new form Agenda
-     */
     
     public Agenda(String nomeEnfermeira) {
+        
         this.nomeEnfermeira = nomeEnfermeira;
         initComponents();
 
@@ -29,6 +31,15 @@ public class Agenda extends javax.swing.JFrame {
             new Login().setVisible(true); // abre a tela de login
             dispose(); // fecha a tela atual
         });
+        
+        novoAgendamento.addActionListener(e -> {
+            AgendamentoPaciente dialog = new AgendamentoPaciente(this, true, this); // Passa a referência de `Agenda` como parâmetro
+            dialog.setLocationRelativeTo(this); // Centraliza a janela
+            dialog.setVisible(true);
+        });
+
+        
+        atualizarTabelaAgenda(); 
 
     }
 
@@ -57,7 +68,7 @@ public class Agenda extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaDaAgenda = new javax.swing.JTable();
         button4 = new java.awt.Button();
         novoAgendamento = new java.awt.Button();
 
@@ -229,8 +240,8 @@ public class Agenda extends javax.swing.JFrame {
 
         jScrollPane2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
-        jTable2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDaAgenda.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        tabelaDaAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"08:00", null, null, null, null, null, null, null},
                 {"08:30", null, null, null, null, null, null, null},
@@ -252,9 +263,9 @@ public class Agenda extends javax.swing.JFrame {
                 "Horario", "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sabado"
             }
         ));
-        jTable2.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jTable2.setShowGrid(true);
-        jScrollPane2.setViewportView(jTable2);
+        tabelaDaAgenda.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tabelaDaAgenda.setShowGrid(true);
+        jScrollPane2.setViewportView(tabelaDaAgenda);
 
         jSplitPane1.setRightComponent(jScrollPane2);
 
@@ -327,6 +338,95 @@ public class Agenda extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void atualizarTabelaAgenda() {
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            // Lista de todos os horários possíveis
+            String[] horarios = {
+                "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", 
+                "12:00", "12:30", "16:00", "16:30", "17:00", "17:30", "18:00"
+            };
+
+            // SQL para buscar os agendamentos existentes
+            String sql = "SELECT HoraAgendamento, DiaDaSemana, PacienteId FROM Agendamentos ORDER BY HoraAgendamento";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            // Obter o modelo da tabela
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tabelaDaAgenda.getModel();
+
+            // Limpar a tabela antes de adicionar os novos dados
+            model.setRowCount(0);
+
+            // Criar um ArrayList para armazenar os horários agendados
+            java.util.List<String> agendamentos = new java.util.ArrayList<>();
+
+            // Preencher o ArrayList com os horários agendados
+            while (rs.next()) {
+                String horaAgendamento = rs.getString("HoraAgendamento");
+                String diaDaSemana = rs.getString("DiaDaSemana");
+                int pacienteId = rs.getInt("PacienteId");
+
+                // Buscar o nome do paciente
+                String nomePaciente = obterNomePaciente(pacienteId);
+
+                // Adicionar o agendamento à lista
+                agendamentos.add(horaAgendamento + "|" + nomePaciente + "|" + diaDaSemana);
+            }
+
+            // Preencher todos os horários na tabela
+            for (String horario : horarios) {
+                boolean encontrado = false;
+
+                // Verificar se o horário já tem um agendamento
+                for (String agendamento : agendamentos) {
+                    String[] partes = agendamento.split("\\|");
+                    String horaAgendamento = partes[0];
+
+                    if (horaAgendamento.equals(horario)) {
+                        String nomePaciente = partes[1];
+
+                        // Adicionar linha à tabela com o nome do paciente
+                        model.addRow(new Object[]{horario, nomePaciente, "", "", "", "", "", ""});
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                // Se não houver agendamento, deixar a célula em branco
+                if (!encontrado) {
+                    model.addRow(new Object[]{horario, "", "", "", "", "", "", ""}); // Deixa as células em branco
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao carregar os agendamentos.");
+        }
+    }
+
+
+
+
+
+
+    // Método auxiliar para obter o nome do paciente com base no ID
+    // Método auxiliar para obter o nome do paciente com base no ID
+    private String obterNomePaciente(int pacienteId) {
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT Nome FROM Pacientes WHERE Id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, pacienteId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("Nome");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Desconhecido";  // Caso não encontre o paciente
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoAgenda;
@@ -345,8 +445,8 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel nomeDaEnfermeira;
     private java.awt.Button novoAgendamento;
+    private javax.swing.JTable tabelaDaAgenda;
     // End of variables declaration//GEN-END:variables
 }
