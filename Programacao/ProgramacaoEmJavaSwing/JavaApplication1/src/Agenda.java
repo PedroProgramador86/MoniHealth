@@ -3,9 +3,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;  // Adicione esta linha para corrigir o erro de SQL Exception
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Agenda extends javax.swing.JFrame {
     private String nomeEnfermeira;
+    
+    String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     
     public Agenda(String nomeEnfermeira) {
         
@@ -76,6 +80,8 @@ public class Agenda extends javax.swing.JFrame {
         });
 
         atualizarTabelaAgenda(); 
+        atualizarTabelaPacientesDoDia();
+
               
     }
 
@@ -97,7 +103,7 @@ public class Agenda extends javax.swing.JFrame {
         botaoDelogarConta = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaPacientesDoDia = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaDaAgenda = new javax.swing.JTable();
         button4 = new java.awt.Button();
@@ -217,7 +223,7 @@ public class Agenda extends javax.swing.JFrame {
 
         jSplitPane1.setDividerLocation(300);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPacientesDoDia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -264,8 +270,8 @@ public class Agenda extends javax.swing.JFrame {
                 "Horario", "Paciente"
             }
         ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tabelaPacientesDoDia.setShowGrid(true);
+        jScrollPane1.setViewportView(tabelaPacientesDoDia);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
@@ -388,6 +394,36 @@ public class Agenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao carregar os agendamentos.");
         }
     }
+    
+     public void atualizarTabelaPacientesDoDia() {
+        String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT Id, HoraAgendamento, NomePaciente, DiaDaSemana, DataAgendamento, NomeEnfermeira, TipoAgendamento, StatusAgendamento " +
+                         "FROM Agendamentos " +
+                         "WHERE DataAgendamento = ? " + 
+                         "ORDER BY HoraAgendamento";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, dataAtual); 
+
+            ResultSet rs = stmt.executeQuery();
+
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tabelaPacientesDoDia.getModel();
+            model.setRowCount(0);  // Limpa a tabela antes de preenchê-la
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("HoraAgendamento"), 
+                    rs.getString("NomePaciente")      
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao carregar os agendamentos.");
+        }
+    }
+
 
 
 
@@ -418,9 +454,9 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nomeDaEnfermeira;
     private java.awt.Button novoAgendamento;
     private javax.swing.JTable tabelaDaAgenda;
+    private javax.swing.JTable tabelaPacientesDoDia;
     // End of variables declaration//GEN-END:variables
 }

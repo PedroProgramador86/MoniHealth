@@ -1,17 +1,19 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import java.sql.SQLException;  // Adicione esta linha para corrigir o erro de SQL Exception
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 
 public class Painel extends javax.swing.JFrame {
     private String nomeEnfermeira;
 
-    /**
-     * Creates new form Agenda
-     */
-    
-    
+    String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     
     
     public Painel(String nomeEnfermeira) {
@@ -20,7 +22,8 @@ public class Painel extends javax.swing.JFrame {
         
         nomeDaenfermeira.setText(nomeEnfermeira);
 
-
+        atualizarNumeracaoDeAgendados();
+        
         botaoAgenda.setSelected(true);
         botaoPainel.setSelected(false);
         botaoProntuarios.setSelected(false);
@@ -55,6 +58,7 @@ public class Painel extends javax.swing.JFrame {
 
         
         carregarPacientesNaTabela();
+        atualizarTabelaPacientesDoDia();
         
     }
     
@@ -81,14 +85,14 @@ public class Painel extends javax.swing.JFrame {
         textoFaltantes = new javax.swing.JLabel();
         textoConfirmados = new javax.swing.JLabel();
         NumeracaoDeConfirmados = new javax.swing.JLabel();
-        NumeracaoDeConfirmados1 = new javax.swing.JLabel();
-        NumeracaoDeConfirmados2 = new javax.swing.JLabel();
-        NumeracaoDeConfirmados3 = new javax.swing.JLabel();
+        NumeracaoDeFaltantes = new javax.swing.JLabel();
+        NumeracaoDeAgendados = new javax.swing.JLabel();
+        NumeracaoDeAtendidos = new javax.swing.JLabel();
         nomeDaenfermeira = new javax.swing.JLabel();
         botaoDeslogarConta = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaPacientesDoDia = new javax.swing.JTable();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -154,16 +158,16 @@ public class Painel extends javax.swing.JFrame {
         NumeracaoDeConfirmados.setForeground(new java.awt.Color(51, 51, 255));
         NumeracaoDeConfirmados.setText("0");
 
-        NumeracaoDeConfirmados1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados1.setForeground(new java.awt.Color(255, 0, 51));
-        NumeracaoDeConfirmados1.setText("0");
+        NumeracaoDeFaltantes.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        NumeracaoDeFaltantes.setForeground(new java.awt.Color(255, 0, 51));
+        NumeracaoDeFaltantes.setText("0");
 
-        NumeracaoDeConfirmados2.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados2.setText("0");
+        NumeracaoDeAgendados.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        NumeracaoDeAgendados.setText("0");
 
-        NumeracaoDeConfirmados3.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        NumeracaoDeConfirmados3.setForeground(new java.awt.Color(51, 204, 0));
-        NumeracaoDeConfirmados3.setText("0");
+        NumeracaoDeAtendidos.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        NumeracaoDeAtendidos.setForeground(new java.awt.Color(51, 204, 0));
+        NumeracaoDeAtendidos.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -171,15 +175,15 @@ public class Painel extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(NumeracaoDeConfirmados3)
+                .addComponent(NumeracaoDeAtendidos)
                 .addGap(33, 33, 33)
                 .addComponent(textoAtendidos)
                 .addGap(40, 40, 40)
-                .addComponent(NumeracaoDeConfirmados2)
+                .addComponent(NumeracaoDeAgendados)
                 .addGap(35, 35, 35)
                 .addComponent(textoAgendados)
                 .addGap(42, 42, 42)
-                .addComponent(NumeracaoDeConfirmados1)
+                .addComponent(NumeracaoDeFaltantes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(textoFaltantes)
                 .addGap(18, 18, 18)
@@ -196,9 +200,9 @@ public class Painel extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NumeracaoDeConfirmados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NumeracaoDeConfirmados1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NumeracaoDeConfirmados2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NumeracaoDeConfirmados3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(NumeracaoDeFaltantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NumeracaoDeAgendados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NumeracaoDeAtendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(textoAtendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -278,7 +282,7 @@ public class Painel extends javax.swing.JFrame {
 
         jSplitPane1.setDividerLocation(300);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPacientesDoDia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -325,8 +329,8 @@ public class Painel extends javax.swing.JFrame {
                 "Horario", "Paciente"
             }
         ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tabelaPacientesDoDia.setShowGrid(true);
+        jScrollPane1.setViewportView(tabelaPacientesDoDia);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
@@ -547,13 +551,100 @@ public class Painel extends javax.swing.JFrame {
             System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
         }
     }
+    
+    private void atualizarNumeracaoDeAgendados() {
+        // Inicialize as variáveis de contagem
+        int numAgendados = 0;
+        int numAtendidos = 0;
+        int numFaltantes = 0;
+        int numConfirmados = 0;
+
+        // SQL para contar os agendamentos
+        String sqlAgendados = "SELECT COUNT(*) FROM Agendamentos";
+        String sqlAtendidos = "SELECT COUNT(*) FROM Agendamentos WHERE StatusAgendamento = 'Atendido'";
+        String sqlFaltantes = "SELECT COUNT(*) FROM Agendamentos WHERE StatusAgendamento = 'Faltou'";
+        String sqlConfirmados = "SELECT COUNT(*) FROM Agendamentos WHERE StatusAgendamento = 'Confirmado'";
+
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            // Contagem de todos os agendamentos
+            try (PreparedStatement stmt = conn.prepareStatement(sqlAgendados);
+                 ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    numAgendados = rs.getInt(1); // Contagem total de agendamentos
+                }
+            }
+
+            // Contagem de agendamentos "Atendidos"
+            try (PreparedStatement stmt = conn.prepareStatement(sqlAtendidos);
+                 ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    numAtendidos = rs.getInt(1); // Contagem de "Atendidos"
+                }
+            }
+
+            // Contagem de agendamentos "Faltantes"
+            try (PreparedStatement stmt = conn.prepareStatement(sqlFaltantes);
+                 ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    numFaltantes = rs.getInt(1); // Contagem de "Faltou"
+                }
+            }
+
+            // Contagem de agendamentos "Confirmados"
+            try (PreparedStatement stmt = conn.prepareStatement(sqlConfirmados);
+                 ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    numConfirmados = rs.getInt(1); // Contagem de "Confirmado"
+                }
+            }
+
+            // Atualiza os labels com os números contados
+            NumeracaoDeAgendados.setText(String.valueOf(numAgendados));
+            NumeracaoDeAtendidos.setText(String.valueOf(numAtendidos));
+            NumeracaoDeFaltantes.setText(String.valueOf(numFaltantes));
+            NumeracaoDeConfirmados.setText(String.valueOf(numConfirmados));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao carregar a quantidade de agendamentos.");
+        }
+    }
+
+        public void atualizarTabelaPacientesDoDia() {
+        String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT Id, HoraAgendamento, NomePaciente, DiaDaSemana, DataAgendamento, NomeEnfermeira, TipoAgendamento, StatusAgendamento " +
+                         "FROM Agendamentos " +
+                         "WHERE DataAgendamento = ? " + 
+                         "ORDER BY HoraAgendamento";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, dataAtual); 
+
+            ResultSet rs = stmt.executeQuery();
+
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tabelaPacientesDoDia.getModel();
+            model.setRowCount(0);  // Limpa a tabela antes de preenchê-la
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("HoraAgendamento"), 
+                    rs.getString("NomePaciente")      
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao carregar os agendamentos.");
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NumeracaoDeAgendados;
+    private javax.swing.JLabel NumeracaoDeAtendidos;
     private javax.swing.JLabel NumeracaoDeConfirmados;
-    private javax.swing.JLabel NumeracaoDeConfirmados1;
-    private javax.swing.JLabel NumeracaoDeConfirmados2;
-    private javax.swing.JLabel NumeracaoDeConfirmados3;
+    private javax.swing.JLabel NumeracaoDeFaltantes;
     private javax.swing.JToggleButton botaoAgenda;
     private java.awt.Button botaoCadastrarPaciente;
     private javax.swing.JButton botaoDeslogarConta;
@@ -576,9 +667,9 @@ public class Painel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel nomeDaenfermeira;
     private javax.swing.JTable tabelaInformeMostraPacientes;
+    private javax.swing.JTable tabelaPacientesDoDia;
     private javax.swing.JLabel textoAgendados;
     private javax.swing.JLabel textoAtendidos;
     private javax.swing.JLabel textoConfirmados;

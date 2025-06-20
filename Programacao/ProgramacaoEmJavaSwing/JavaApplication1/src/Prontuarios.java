@@ -6,7 +6,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import javax.swing.JOptionPane;
+import java.sql.SQLException;  // Adicione esta linha para corrigir o erro de SQL Exception
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Prontuarios extends javax.swing.JFrame {
     
@@ -15,9 +18,8 @@ public class Prontuarios extends javax.swing.JFrame {
     private String dataNascimentoPaciente;
     private String convenioPaciente;
 
-    /**
-     * Creates new form Agenda
-     */
+    String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    
     public Prontuarios(String nomeEnfermeira) {
         this.nomeEnfermeira = nomeEnfermeira;
         
@@ -48,6 +50,8 @@ public class Prontuarios extends javax.swing.JFrame {
             dialog.setVisible(true);
 
             carregarPacientesNaTabela(); // Atualiza após cadastro
+            atualizarTabelaPacientesDoDia(); // Chame isso no método de inicialização da tela ou sempre que necessário.
+
         });
         
     
@@ -118,7 +122,7 @@ public class Prontuarios extends javax.swing.JFrame {
         botaoDeslogarConta = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaPacientesDoDia = new javax.swing.JTable();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -255,7 +259,7 @@ public class Prontuarios extends javax.swing.JFrame {
 
         jSplitPane1.setDividerLocation(300);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaPacientesDoDia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -302,8 +306,8 @@ public class Prontuarios extends javax.swing.JFrame {
                 "Horario", "Paciente"
             }
         ));
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
+        tabelaPacientesDoDia.setShowGrid(true);
+        jScrollPane1.setViewportView(tabelaPacientesDoDia);
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
@@ -561,7 +565,43 @@ public class Prontuarios extends javax.swing.JFrame {
         return "Data não encontrada";
     }
 
-    
+    public void atualizarTabelaPacientesDoDia() {
+        String dataAtual = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        try (Connection conn = ConexaoBancoDeDados.conectar()) {
+            String sql = "SELECT Id, HoraAgendamento, NomePaciente, DiaDaSemana, DataAgendamento, NomeEnfermeira, TipoAgendamento, StatusAgendamento " +
+                         "FROM Agendamentos " +
+                         "WHERE DataAgendamento = ? " + 
+                         "ORDER BY HoraAgendamento";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, dataAtual); // Passa a data atual para a consulta SQL
+
+            ResultSet rs = stmt.executeQuery();
+
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tabelaPacientesDoDia.getModel();
+            model.setRowCount(0);  // Limpa a tabela antes de preenchê-la
+
+            while (rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("HoraAgendamento"),  // Hora vai para a coluna "Horario"
+                    rs.getString("NomePaciente")      // Nome do paciente vai para a coluna "Paciente"
+                });
+            }
+
+            // Forçar a atualização da tabela
+            model.fireTableDataChanged(); // Notifica que os dados da tabela foram alterados
+            tabelaPacientesDoDia.revalidate();  // Garante que a tabela seja recalculada
+            tabelaPacientesDoDia.repaint();     // Repaint para atualizar visualmente
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao carregar os agendamentos.");
+        }
+    }
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoAgenda;
@@ -587,9 +627,9 @@ public class Prontuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel nomeDaEnfermeira;
     private javax.swing.JTable tabelaInformeMostraPacientes;
+    private javax.swing.JTable tabelaPacientesDoDia;
     // End of variables declaration//GEN-END:variables
 }
