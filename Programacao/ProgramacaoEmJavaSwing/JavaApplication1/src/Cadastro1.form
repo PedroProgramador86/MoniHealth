@@ -30,29 +30,27 @@
               <Component id="panel1" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel4" min="-2" pref="159" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="botaoCasoContaJaCriada" min="-2" pref="159" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="TextoDeNomeCompleto" min="-2" max="-2" attributes="0"/>
-                              <Component id="TextoDeEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoPreencheNome" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botaoDeProximo" pref="440" max="32767" attributes="0"/>
-                              <Component id="campoPreencheCoren" alignment="0" max="32767" attributes="0"/>
-                              <Component id="campoPreencheEmail" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="TextoDeCoren" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="139" max="32767" attributes="0"/>
+                      <EmptySpace pref="276" max="32767" attributes="0"/>
                       <Component id="label1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel4" min="-2" pref="159" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="botaoCasoContaJaCriada" min="-2" pref="211" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="TextoDeNomeCompleto" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextoDeEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextoDeCoren" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoPreencheNome" max="32767" attributes="0"/>
+                          <Component id="campoPreencheEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="campoPreencheCoren" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoDeProximo" alignment="0" pref="767" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -64,26 +62,26 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="label1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="TextoDeNomeCompleto" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="campoPreencheNome" min="-2" pref="52" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="TextoDeEmail" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="campoPreencheEmail" min="-2" pref="52" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="TextoDeCoren" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Component id="campoPreencheCoren" min="-2" pref="52" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="botaoDeProximo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoCasoContaJaCriada" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoCasoContaJaCriada" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,7 +103,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="341" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -129,7 +127,7 @@
     <Component class="java.awt.Label" name="label1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="55" style="0"/>
+          <Font name="Dialog" size="70" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastro"/>
       </Properties>
@@ -206,6 +204,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="botaoCasoContaJaCriada">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="sansserif" size="18" style="0"/>
+        </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="66" red="0" type="rgb"/>
         </Property>

@@ -114,20 +114,20 @@ public class Agenda extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MoniHealth");
 
         botaoAgenda.setBackground(new java.awt.Color(0, 204, 255));
-        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoAgenda.setText("Agenda");
 
         botaoPainel.setBackground(new java.awt.Color(0, 204, 255));
-        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoPainel.setText("Painel");
 
         botaoProntuarios.setBackground(new java.awt.Color(0, 204, 255));
-        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoProntuarios.setText("Prontuarios");
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
@@ -138,15 +138,15 @@ public class Agenda extends javax.swing.JFrame {
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         button1.setBackground(new java.awt.Color(153, 153, 153));
-        button1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        button1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         button1.setLabel("Observações");
 
         button2.setBackground(new java.awt.Color(153, 153, 153));
-        button2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        button2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         button2.setLabel("Lista de Espera");
 
         button3.setBackground(new java.awt.Color(153, 153, 153));
-        button3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        button3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         button3.setLabel("Imprimir Agenda");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -157,12 +157,12 @@ public class Agenda extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(112, 112, 112)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
-                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,13 +176,18 @@ public class Agenda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        nomeDaEnfermeira.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        nomeDaEnfermeira.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         nomeDaEnfermeira.setForeground(new java.awt.Color(51, 51, 51));
         nomeDaEnfermeira.setText("Nome da Enfermeira");
 
         botaoDelogarConta.setBackground(new java.awt.Color(102, 102, 102));
         botaoDelogarConta.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoDelogarConta.setText("Sair");
+        botaoDelogarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDelogarContaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,12 +201,12 @@ public class Agenda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botaoPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeDaEnfermeira)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
                 .addComponent(botaoDelogarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(21, 21, 21))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -209,15 +214,15 @@ public class Agenda extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoPainel, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                    .addComponent(botaoAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoProntuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(19, 19, 19))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoDelogarConta, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nomeDaEnfermeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(botaoDelogarConta)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(nomeDaEnfermeira, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -277,7 +282,7 @@ public class Agenda extends javax.swing.JFrame {
 
         jScrollPane2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
-        tabelaDaAgenda.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        tabelaDaAgenda.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         tabelaDaAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, "", null, null, null, null, null, null},
@@ -334,6 +339,7 @@ public class Agenda extends javax.swing.JFrame {
         button4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         button4.setLabel("Novo Paciente");
 
+        novoAgendamento.setBackground(new java.awt.Color(102, 255, 255));
         novoAgendamento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         novoAgendamento.setLabel("+ Novo Agendamento");
 
@@ -344,27 +350,31 @@ public class Agenda extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSplitPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(novoAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(novoAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(novoAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botaoDelogarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDelogarContaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoDelogarContaActionPerformed
 
 
     

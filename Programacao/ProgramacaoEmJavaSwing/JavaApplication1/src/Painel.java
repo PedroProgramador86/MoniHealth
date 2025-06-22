@@ -111,16 +111,16 @@ public class Painel extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MoniHealth");
 
         botaoAgenda.setBackground(new java.awt.Color(0, 204, 255));
-        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoAgenda.setText("Agenda");
 
         botaoPainel.setBackground(new java.awt.Color(0, 204, 255));
-        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoPainel.setText("Painel");
         botaoPainel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class Painel extends javax.swing.JFrame {
         });
 
         botaoProntuarios.setBackground(new java.awt.Color(0, 204, 255));
-        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoProntuarios.setText("Prontuarios");
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
@@ -184,31 +184,33 @@ public class Painel extends javax.swing.JFrame {
                 .addComponent(textoAgendados)
                 .addGap(42, 42, 42)
                 .addComponent(NumeracaoDeFaltantes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(textoFaltantes)
                 .addGap(18, 18, 18)
                 .addComponent(NumeracaoDeConfirmados)
                 .addGap(39, 39, 39)
                 .addComponent(textoConfirmados)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(NumeracaoDeConfirmados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textoFaltantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textoConfirmados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NumeracaoDeConfirmados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NumeracaoDeFaltantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NumeracaoDeAgendados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NumeracaoDeAtendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(textoAtendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(textoAgendados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textoFaltantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textoConfirmados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(textoAgendados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -232,7 +234,7 @@ public class Painel extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        nomeDaenfermeira.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        nomeDaenfermeira.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         nomeDaenfermeira.setForeground(new java.awt.Color(51, 51, 51));
         nomeDaenfermeira.setText("Nome da Enfermeira");
 
@@ -250,13 +252,13 @@ public class Painel extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1)
-                        .addGap(38, 38, 38)
+                        .addGap(34, 34, 34)
                         .addComponent(botaoAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(nomeDaenfermeira)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoDeslogarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -267,16 +269,23 @@ public class Painel extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(19, 19, 19))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botaoProntuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoPainel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nomeDaenfermeira, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoDeslogarConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(botaoDeslogarConta))
+                        .addGap(19, 19, 19)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -337,19 +346,22 @@ public class Painel extends javax.swing.JFrame {
         jSplitPane2.setDividerLocation(60);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jLabel18.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel18.setText("Periodo:");
 
-        jLabel19.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel19.setText("Convênio:");
 
-        jLabel20.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel20.setText("Enfermeiro(a):");
 
+        jComboBox16.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ultimos 30 dias", "Item 2", "Item 3", "Item 4" }));
 
+        jComboBox17.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Item 2", "Item 3", "Item 4" }));
 
+        jComboBox18.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -369,7 +381,7 @@ public class Painel extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,7 +394,7 @@ public class Painel extends javax.swing.JFrame {
                     .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
                     .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(jPanel3);
@@ -442,7 +454,7 @@ public class Painel extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Pendencia", "Data de Atendimento", "Convênio", "Enfermeiro(a)"
+                "Nome", "Telefone", "Data de Ultimo Agendamento", "Convênio", "Enfermeiro(a)"
             }
         ));
         tabelaInformeMostraPacientes.setGridColor(new java.awt.Color(102, 102, 102));
@@ -466,25 +478,25 @@ public class Painel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1074, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1449, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botaoCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(botaoCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -523,34 +535,52 @@ public class Painel extends javax.swing.JFrame {
         });
     }
     
-    private void carregarPacientesNaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
-        modelo.setRowCount(0); // Limpa a tabela
+        private void carregarPacientesNaTabela() {
+            DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
+            modelo.setRowCount(0); // Limpa a tabela
 
-        String sql = "SELECT Nome, Convenio FROM Pacientes ORDER BY Nome";
+            String sql = """
+                SELECT p.Nome, p.Telefone, p.Convenio, p.Enfermeira,
+                       (
+                           SELECT MAX(a.DataAgendamento)
+                           FROM Agendamentos a
+                           WHERE a.NomePaciente = p.Nome
+                       ) AS UltimoAtendimento
+                FROM Pacientes p
+                ORDER BY p.Nome
+            """;
 
-        try (Connection conn = ConexaoBancoDeDados.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+            try (Connection conn = ConexaoBancoDeDados.conectar();
+                 PreparedStatement stmt = conn.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-                String nome = rs.getString("Nome");
-                String convenio = rs.getString("Convenio");
+                while (rs.next()) {
+                    String nome = rs.getString("Nome");
+                    String telefone = rs.getString("Telefone");
+                    String convenio = rs.getString("Convenio");
+                    String enfermeira = rs.getString("Enfermeira");
+                    String ultimoAtendimento = rs.getString("UltimoAtendimento");
 
-                modelo.addRow(new Object[]{
-                    nome,
-                    "Null",                   // Pendência
-                    "Null",                   // Data de atendimento
-                    convenio,
-                    nomeEnfermeira
-                });
+                    if (ultimoAtendimento == null) {
+                        ultimoAtendimento = "Sem registro";
+                    }
 
+                    modelo.addRow(new Object[]{
+                        nome,
+                        telefone != null ? telefone : "Sem telefone",
+                        ultimoAtendimento,
+                        convenio != null ? convenio : "Não informado",
+                        enfermeira != null ? enfermeira : "Não atribuído"
+                    });
+                }
+
+            } catch (SQLException ex) {
+                System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
+                JOptionPane.showMessageDialog(this, "Erro ao carregar dados dos pacientes.");
             }
-
-        } catch (Exception ex) {
-            System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
         }
-    }
+
+
     
     private void atualizarNumeracaoDeAgendados() {
         // Inicialize as variáveis de contagem

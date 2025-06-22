@@ -141,20 +141,20 @@ public class Prontuarios extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MoniHealth");
 
         botaoAgenda.setBackground(new java.awt.Color(0, 204, 255));
-        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoAgenda.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoAgenda.setText("Agenda");
 
         botaoPainel.setBackground(new java.awt.Color(0, 204, 255));
-        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoPainel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoPainel.setText("Painel");
 
         botaoProntuarios.setBackground(new java.awt.Color(0, 204, 255));
-        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        botaoProntuarios.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         botaoProntuarios.setText("Prontuarios");
 
         jPanel2.setBackground(new java.awt.Color(0, 204, 255));
@@ -178,15 +178,15 @@ public class Prontuarios extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(32, 32, 32)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(602, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -205,12 +205,12 @@ public class Prontuarios extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        nomeDaEnfermeira.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        nomeDaEnfermeira.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         nomeDaEnfermeira.setForeground(new java.awt.Color(51, 51, 51));
         nomeDaEnfermeira.setText("Nome da Enfermeira");
 
@@ -232,8 +232,8 @@ public class Prontuarios extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(botaoPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
                         .addComponent(nomeDaEnfermeira)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoDeslogarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,22 +243,22 @@ public class Prontuarios extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(19, 19, 19))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(botaoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                        .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoDeslogarConta, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nomeDaEnfermeira, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoPainel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nomeDaEnfermeira, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoDeslogarConta))
+                    .addComponent(botaoProntuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jSplitPane1.setDividerLocation(300);
 
+        tabelaPacientesDoDia.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
         tabelaPacientesDoDia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -314,19 +314,22 @@ public class Prontuarios extends javax.swing.JFrame {
         jSplitPane2.setDividerLocation(60);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jLabel18.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel18.setText("Pendências:");
 
-        jLabel19.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel19.setText("Status:");
 
-        jLabel20.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel20.setText("Convênio:");
 
+        jComboBox16.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Foto e Relatorio", "Apenas Foto", "Apenas Relatorio", "Nenhuma Pêndencia" }));
 
+        jComboBox17.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Ativo", "Desistência", "Pagamento Pendênte", "Ôbito", "Internado", " " }));
 
+        jComboBox18.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jComboBox18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -419,7 +422,7 @@ public class Prontuarios extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Pendência", "Status", "Codigo", "Convênio", "Enfermeiro(a)"
+                "Nome", "Telefone", "Status", "Codigo", "Convênio", "Enfermeiro(a)"
             }
         ));
         tabelaInformeMostraPacientes.setGridColor(new java.awt.Color(102, 102, 102));
@@ -443,24 +446,24 @@ public class Prontuarios extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1074, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1451, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -506,18 +509,16 @@ public class Prontuarios extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaInformeMostraPacientes.getModel();
         modelo.setRowCount(0); // limpa a tabela
 
-            String sql = """
-                SELECT p.Nome, p.Codigo, p.Convenio, p.Enfermeira,
-                       (SELECT pp1.StatusPaciente
-                        FROM ProntuariosPaciente pp1
-                        WHERE pp1.NomePaciente = p.Nome
-                        ORDER BY pp1.DataDeAlteracao DESC
-                        LIMIT 1) AS StatusPaciente
-                FROM Pacientes p
-                ORDER BY p.Nome
-            """;
-
-
+        String sql = """
+            SELECT p.Nome, p.Telefone, p.Codigo, p.Convenio, p.Enfermeira,
+                   (SELECT pp1.StatusPaciente
+                    FROM ProntuariosPaciente pp1
+                    WHERE pp1.NomePaciente = p.Nome
+                    ORDER BY pp1.DataDeAlteracao DESC
+                    LIMIT 1) AS StatusPaciente
+            FROM Pacientes p
+            ORDER BY p.Nome
+        """;
 
         try (Connection conn = ConexaoBancoDeDados.conectar();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -525,6 +526,7 @@ public class Prontuarios extends javax.swing.JFrame {
 
             while (rs.next()) {
                 String nome = rs.getString("Nome");
+                String telefone = rs.getString("Telefone");
                 String codigo = rs.getString("Codigo");
                 String convenio = rs.getString("Convenio");
                 String enfermeira = rs.getString("Enfermeira");
@@ -536,7 +538,7 @@ public class Prontuarios extends javax.swing.JFrame {
 
                 modelo.addRow(new Object[]{
                     nome,
-                    "Null",              // Pendência como NULL
+                    telefone != null ? telefone : "Sem telefone",
                     status,
                     codigo,
                     convenio,
@@ -547,8 +549,8 @@ public class Prontuarios extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.err.println("Erro ao carregar pacientes: " + ex.getMessage());
         }
-
     }
+
     
     private String obterDataNascimentoPorCodigo(String codigo) {
         try (Connection conn = ConexaoBancoDeDados.conectar()) {

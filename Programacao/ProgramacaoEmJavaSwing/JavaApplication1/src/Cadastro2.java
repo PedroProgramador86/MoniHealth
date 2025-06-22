@@ -103,14 +103,14 @@ public class Cadastro2 extends javax.swing.JFrame {
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(248, 248, 248)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("");
 
-        label1.setFont(new java.awt.Font("Dialog", 0, 55)); // NOI18N
+        label1.setFont(new java.awt.Font("Dialog", 0, 70)); // NOI18N
         label1.setText("Cadastro");
 
         label2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -126,6 +126,7 @@ public class Cadastro2 extends javax.swing.JFrame {
         TextoDeConfirmarSenha.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         TextoDeConfirmarSenha.setText("Confirmar Senha:");
 
+        botaoDeVoltar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoDeVoltar.setText("<- Voltar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,7 +137,7 @@ public class Cadastro2 extends javax.swing.JFrame {
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotaoDeProximo, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                    .addComponent(BotaoDeProximo, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
                     .addComponent(campoPreencheSenhaNovamente, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoPreencheSenha)
                     .addGroup(layout.createSequentialGroup()
@@ -146,7 +147,7 @@ public class Cadastro2 extends javax.swing.JFrame {
                             .addComponent(TextoDeConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botaoDeVoltar)
-                                .addGap(78, 78, 78)
+                                .addGap(238, 238, 238)
                                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -162,7 +163,7 @@ public class Cadastro2 extends javax.swing.JFrame {
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botaoDeVoltar)
-                        .addGap(40, 40, 40)))
+                        .addGap(49, 49, 49)))
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextoDeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,9 +173,9 @@ public class Cadastro2 extends javax.swing.JFrame {
                 .addComponent(TextoDeConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(campoPreencheSenhaNovamente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(45, 45, 45)
                 .addComponent(BotaoDeProximo)
-                .addGap(37, 69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         label1.getAccessibleContext().setAccessibleName("login");

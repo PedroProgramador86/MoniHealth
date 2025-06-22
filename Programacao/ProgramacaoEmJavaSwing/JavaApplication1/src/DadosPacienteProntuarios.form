@@ -55,9 +55,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSplitPane1" min="-2" pref="464" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSplitPane1" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -66,7 +66,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="24" style="0"/>
+              <Font name="sansserif" size="36" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -76,7 +76,7 @@
         </Component>
         <Container class="javax.swing.JSplitPane" name="jSplitPane1">
           <Properties>
-            <Property name="dividerLocation" type="int" value="390"/>
+            <Property name="dividerLocation" type="int" value="450"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
@@ -134,13 +134,16 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="botaoVoltar">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="sansserif" size="18" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="&lt;- Voltar"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="nomeDoPacienteSelecionado">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="16" style="0"/>
+                          <Font name="sansserif" size="18" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Nome do Paciente Selecionado"/>
                       </Properties>
@@ -160,66 +163,52 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="descricaoCorrespondente" min="-2" max="-2" attributes="0"/>
+                                  <Component id="descricaoCorrespondente" min="-2" pref="494" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="status1" max="32767" attributes="0"/>
+                                      <Component id="status" max="32767" attributes="0"/>
+                                      <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="status1" max="32767" attributes="0"/>
-                                          <Component id="status" max="32767" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="etiologiaCorrespondente" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fatorDesencadenteCorrespondente" min="-2" max="-2" attributes="0"/>
-                                          <Component id="perdaTecidualCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lesaoPorPressaoCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="statusCorrespondente" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="fatorDesencadenteCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" pref="236" max="-2" attributes="0"/>
+                                  <Component id="etiologiaCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="perdaTecidualCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lesaoPorPressaoCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="statusCorrespondente" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="38" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fatorDesencadenteCorrespondente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="fatorDesencadenteCorrespondente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="etiologiaCorrespondente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="etiologiaCorrespondente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="perdaTecidualCorrespondente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="perdaTecidualCorrespondente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lesaoPorPressaoCorrespondente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lesaoPorPressaoCorrespondente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="status" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="status" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="statusCorrespondente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="statusCorrespondente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="status1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="descricaoCorrespondente" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace pref="113" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="descricaoCorrespondente" min="-2" pref="156" max="-2" attributes="0"/>
+                              <EmptySpace pref="104" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -228,7 +217,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="18" style="0"/>
+                          <Font name="sansserif" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Fator Desencadente:"/>
                       </Properties>
@@ -236,7 +225,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="18" style="0"/>
+                          <Font name="sansserif" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Etiologia:"/>
                       </Properties>
@@ -244,7 +233,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="18" style="0"/>
+                          <Font name="sansserif" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Les&#xe3;o por Press&#xe3;o:"/>
                       </Properties>
@@ -252,7 +241,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel5">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="18" style="0"/>
+                          <Font name="sansserif" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Perda Tecidual:"/>
                       </Properties>
@@ -260,7 +249,10 @@
                     <Component class="javax.swing.JLabel" name="fatorDesencadenteCorrespondente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="14" style="0"/>
+                          <Font name="sansserif" size="20" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="fatorDesencadenteCorrespondente"/>
                       </Properties>
@@ -268,7 +260,10 @@
                     <Component class="javax.swing.JLabel" name="etiologiaCorrespondente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="14" style="0"/>
+                          <Font name="sansserif" size="20" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="etiologiaCorrespondente"/>
                       </Properties>
@@ -276,7 +271,10 @@
                     <Component class="javax.swing.JLabel" name="perdaTecidualCorrespondente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="14" style="0"/>
+                          <Font name="sansserif" size="20" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="perdaTecidualCorrespondente"/>
                       </Properties>
@@ -284,7 +282,10 @@
                     <Component class="javax.swing.JLabel" name="lesaoPorPressaoCorrespondente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="14" style="0"/>
+                          <Font name="sansserif" size="20" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="lesaoPorPressaoCorrespondente"/>
                       </Properties>
@@ -292,7 +293,7 @@
                     <Component class="javax.swing.JLabel" name="status">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="18" style="0"/>
+                          <Font name="sansserif" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Status:"/>
                       </Properties>
@@ -300,7 +301,10 @@
                     <Component class="javax.swing.JLabel" name="statusCorrespondente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="14" style="0"/>
+                          <Font name="sansserif" size="20" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="lesaoPorPressaoCorrespondente"/>
                       </Properties>
@@ -308,7 +312,7 @@
                     <Component class="javax.swing.JLabel" name="status1">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="18" style="0"/>
+                          <Font name="sansserif" size="24" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o:"/>
                       </Properties>
@@ -316,7 +320,10 @@
                     <Component class="javax.swing.JLabel" name="descricaoCorrespondente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="sansserif" size="14" style="0"/>
+                          <Font name="sansserif" size="18" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="descricaoCorrespondente"/>
                       </Properties>
@@ -335,37 +342,41 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="nomeDoPacienteSelecionado2" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="nomeDoPacienteSelecionado2" min="-2" pref="540" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="dataDeNascimentoDoPaciente" min="-2" pref="261" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel9" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
+                              <Component id="textoSelecionarData" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="convenioDoPaciente" alignment="0" pref="413" max="32767" attributes="0"/>
+                              <Component id="convenioDoPaciente" pref="795" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="dataDeNascimentoDoPaciente" min="-2" pref="198" max="-2" attributes="0"/>
+                                  <Component id="selecaoDeData" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="textoSelecionarData" min="-2" pref="197" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="selecaoDeData" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -379,19 +390,19 @@
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="dataDeNascimentoDoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="convenioDoPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="textoSelecionarData" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="selecaoDeData" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="76" max="32767" attributes="0"/>
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="68" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -400,7 +411,7 @@
                 <Component class="javax.swing.JLabel" name="nomeDoPacienteSelecionado2">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="sansserif" size="24" style="0"/>
+                      <Font name="sansserif" size="36" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nome do Paciente Selecionado"/>
                   </Properties>
@@ -408,7 +419,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="sansserif" size="18" style="0"/>
+                      <Font name="sansserif" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Data de nascimento:"/>
                   </Properties>
@@ -416,7 +427,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="sansserif" size="18" style="0"/>
+                      <Font name="sansserif" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Conv&#xea;nio:"/>
                   </Properties>
@@ -424,7 +435,7 @@
                 <Component class="javax.swing.JLabel" name="dataDeNascimentoDoPaciente">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="sansserif" size="18" style="0"/>
+                      <Font name="sansserif" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="0" type="rgb"/>
@@ -435,7 +446,7 @@
                 <Component class="javax.swing.JLabel" name="convenioDoPaciente">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="sansserif" size="18" style="0"/>
+                      <Font name="sansserif" size="24" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="0" type="rgb"/>
@@ -446,33 +457,16 @@
                 <Component class="javax.swing.JLabel" name="textoSelecionarData">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="sansserif" size="18" style="0"/>
+                      <Font name="sansserif" size="24" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Data:"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JPanel" name="jPanel3">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="cc" green="33" red="0" type="rgb"/>
-                    </Property>
-                  </Properties>
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="437" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                </Container>
                 <Component class="javax.swing.JComboBox" name="selecaoDeData">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="sansserif" size="24" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
                         <StringItem index="0" value="Item 1"/>
@@ -486,6 +480,44 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
+                <Container class="javax.swing.JPanel" name="jPanel5">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" pref="494" max="-2" attributes="0"/>
+                              <EmptySpace pref="73" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <Component id="jLabel6" min="-2" pref="408" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel6">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/images/imagemFeridaMao.png"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="jLabel6"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
               </SubComponents>
             </Container>
           </SubComponents>

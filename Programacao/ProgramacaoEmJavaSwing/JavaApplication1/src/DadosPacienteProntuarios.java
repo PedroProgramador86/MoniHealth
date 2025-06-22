@@ -144,27 +144,29 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
         dataDeNascimentoDoPaciente = new javax.swing.JLabel();
         convenioDoPaciente = new javax.swing.JLabel();
         textoSelecionarData = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         selecaoDeData = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fundoAzul.setBackground(new java.awt.Color(51, 153, 255));
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MoniHealth");
 
-        jSplitPane1.setDividerLocation(390);
+        jSplitPane1.setDividerLocation(450);
 
         jSplitPane2.setDividerLocation(46);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         jPanel1.setBackground(new java.awt.Color(51, 255, 255));
 
+        botaoVoltar.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         botaoVoltar.setText("<- Voltar");
 
-        nomeDoPacienteSelecionado.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        nomeDoPacienteSelecionado.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         nomeDoPacienteSelecionado.setText("Nome do Paciente Selecionado");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -190,40 +192,46 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
 
         jSplitPane2.setTopComponent(jPanel1);
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel2.setText("Fator Desencadente:");
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel3.setText("Etiologia:");
 
-        jLabel4.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel4.setText("Lesão por Pressão:");
 
-        jLabel5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel5.setText("Perda Tecidual:");
 
-        fatorDesencadenteCorrespondente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        fatorDesencadenteCorrespondente.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        fatorDesencadenteCorrespondente.setForeground(new java.awt.Color(0, 102, 102));
         fatorDesencadenteCorrespondente.setText("fatorDesencadenteCorrespondente");
 
-        etiologiaCorrespondente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        etiologiaCorrespondente.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        etiologiaCorrespondente.setForeground(new java.awt.Color(0, 102, 102));
         etiologiaCorrespondente.setText("etiologiaCorrespondente");
 
-        perdaTecidualCorrespondente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        perdaTecidualCorrespondente.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        perdaTecidualCorrespondente.setForeground(new java.awt.Color(0, 102, 102));
         perdaTecidualCorrespondente.setText("perdaTecidualCorrespondente");
 
-        lesaoPorPressaoCorrespondente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        lesaoPorPressaoCorrespondente.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        lesaoPorPressaoCorrespondente.setForeground(new java.awt.Color(0, 102, 102));
         lesaoPorPressaoCorrespondente.setText("lesaoPorPressaoCorrespondente");
 
-        status.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        status.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         status.setText("Status:");
 
-        statusCorrespondente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        statusCorrespondente.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        statusCorrespondente.setForeground(new java.awt.Color(0, 102, 102));
         statusCorrespondente.setText("lesaoPorPressaoCorrespondente");
 
-        status1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        status1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         status1.setText("Descrição:");
 
-        descricaoCorrespondente.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        descricaoCorrespondente.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        descricaoCorrespondente.setForeground(new java.awt.Color(0, 102, 102));
         descricaoCorrespondente.setText("descricaoCorrespondente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -233,122 +241,130 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(descricaoCorrespondente))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(status1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiologiaCorrespondente)
-                            .addComponent(fatorDesencadenteCorrespondente)
-                            .addComponent(perdaTecidualCorrespondente)
-                            .addComponent(lesaoPorPressaoCorrespondente)
-                            .addComponent(statusCorrespondente))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(descricaoCorrespondente, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(status1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fatorDesencadenteCorrespondente)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etiologiaCorrespondente)
+                    .addComponent(perdaTecidualCorrespondente)
+                    .addComponent(lesaoPorPressaoCorrespondente)
+                    .addComponent(statusCorrespondente))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(fatorDesencadenteCorrespondente))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(etiologiaCorrespondente))
+                .addComponent(fatorDesencadenteCorrespondente)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(perdaTecidualCorrespondente))
+                .addComponent(etiologiaCorrespondente)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lesaoPorPressaoCorrespondente))
+                .addComponent(perdaTecidualCorrespondente)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(status)
-                    .addComponent(statusCorrespondente))
+                .addComponent(lesaoPorPressaoCorrespondente)
+                .addGap(18, 18, 18)
+                .addComponent(status)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusCorrespondente)
+                .addGap(18, 18, 18)
                 .addComponent(status1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(descricaoCorrespondente, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(descricaoCorrespondente, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel2);
 
         jSplitPane1.setLeftComponent(jSplitPane2);
 
-        nomeDoPacienteSelecionado2.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        nomeDoPacienteSelecionado2.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         nomeDoPacienteSelecionado2.setText("Nome do Paciente Selecionado");
 
-        jLabel8.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel8.setText("Data de nascimento:");
 
-        jLabel9.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel9.setText("Convênio:");
 
-        dataDeNascimentoDoPaciente.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        dataDeNascimentoDoPaciente.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         dataDeNascimentoDoPaciente.setForeground(new java.awt.Color(0, 153, 153));
         dataDeNascimentoDoPaciente.setText("Data de Nasciemento");
 
-        convenioDoPaciente.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        convenioDoPaciente.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         convenioDoPaciente.setForeground(new java.awt.Color(0, 153, 153));
         convenioDoPaciente.setText("Convênio do paciente Selecionado");
 
-        textoSelecionarData.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        textoSelecionarData.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         textoSelecionarData.setText("Data:");
 
-        jPanel3.setBackground(new java.awt.Color(0, 51, 204));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
-        );
-
+        selecaoDeData.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         selecaoDeData.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imagemFeridaMao.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(nomeDoPacienteSelecionado2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(47, 47, 47))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(nomeDoPacienteSelecionado2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dataDeNascimentoDoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(150, 150, 150)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoSelecionarData, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(convenioDoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                    .addComponent(convenioDoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(dataDeNascimentoDoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(textoSelecionarData, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selecaoDeData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(selecaoDeData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,17 +375,17 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(dataDeNascimentoDoPaciente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(convenioDoPaciente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoSelecionarData)
                     .addComponent(selecaoDeData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(46, 46, 46)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel4);
@@ -388,9 +404,9 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
             fundoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fundoAzulLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSplitPane1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -451,12 +467,13 @@ public class DadosPacienteProntuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JLabel lesaoPorPressaoCorrespondente;
